@@ -33,6 +33,9 @@ py_binary(
         "app.py",
         "infrastructure/requirements_processor.py"
     ],
+    data = glob([
+        "*.txt"
+    ]),
     deps = [
         requirement("beautifulsoup4"),
         requirement("selenium"),
