@@ -129,7 +129,8 @@ dmypy.json
 .pyre/
 
 # Bazel
-bazel-*
+/bazel-*
 
 # Idea
 .idea
+/bazel-application-automizer/

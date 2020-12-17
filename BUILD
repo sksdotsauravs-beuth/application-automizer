@@ -29,9 +29,13 @@ load("@pip//:requirements.bzl", "requirement")
 
 py_binary(
     name = "app",
-    srcs = ["app.py"],
+    srcs = [
+        "app.py",
+        "infrastructure/requirements_processor.py"
+    ],
     deps = [
         requirement("beautifulsoup4"),
+        requirement("selenium"),
     ]
 )
 
