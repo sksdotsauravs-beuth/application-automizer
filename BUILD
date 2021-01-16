@@ -31,7 +31,9 @@ py_binary(
     name = "app",
     srcs = [
         "app.py",
-        "infrastructure/requirements_processor.py"
+        "infrastructure/requirements_processor.py",
+        "model/driver_info.py",
+        "factory/driver_factory.py"
     ],
     data = glob([
         "*.txt"
