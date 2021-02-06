@@ -46,6 +46,7 @@ py_binary(
     deps = [
         requirement("beautifulsoup4"),
         requirement("selenium"),
+        requirement("pyyaml")
     ]
 )
 

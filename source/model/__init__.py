@@ -1,15 +1,19 @@
-from .driver_info import DriverInfo
 from .log_level import LogLevel
+from .configuration_info import ConfigurationInfo
+from .configuration import Configuration
+from .driver_info import DriverInfo
 
 """
     - author:             Saurav Kumar Saha
     - created:            2021-02-04
-    - changed:            2021-02-04
+    - changed:            2021-02-06
 
     This file lists all the modules for the package: model 
 """
 
 __all__ = [
-    DriverInfo,
-    LogLevel
+    LogLevel,
+    ConfigurationInfo,
+    Configuration,
+    DriverInfo
 ]

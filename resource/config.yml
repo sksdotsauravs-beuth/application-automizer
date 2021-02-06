@@ -1,0 +1,5 @@
+# set the log level to either "ERROR", "DEBUG" or "INFO" to set the precision of error messages
+log_level: "INFO"
+# set this property if you would only like to execute a dry run. If you don't want to submit the final form
+# set this property to "yes". If you do not want to use dry run mode, just set this property to "no".
+dry_run: "no"

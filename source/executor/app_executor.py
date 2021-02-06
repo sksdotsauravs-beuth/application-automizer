@@ -35,10 +35,12 @@ class AppExecutor:
     # private
 
     def __run(self, application):
-        pass
+        self.__display_begin_message()
+        self.__handle_pre_steps(application)
 
     def __run_dry(self):
         application = self.__create_application()
+        application.set_dry_run_parameter_configuration()
         self.__run(application)
 
     def __run_normal(self):
@@ -46,10 +48,10 @@ class AppExecutor:
         self.__run(application)
 
     def __handle_pre_steps(self, application):
-        pass
+        self.__logger.print_log_message("Execute preparation actions...", LogLevel.INFO)
 
     def __handle_post_steps(self, application):
-        pass
+        self.__logger.print_log_message("Execute post actions...", LogLevel.INFO)
 
     def __display_help(self):
         print(self.__get_help_message())
@@ -64,6 +66,8 @@ class AppExecutor:
         submitter = ApplicationSubmitter(
             str(self.__parameter_validator.get_argv()[1])
         )
+        submitter.create_configuration()
+        self.__logger = submitter.logger
         return submitter
 
     @staticmethod

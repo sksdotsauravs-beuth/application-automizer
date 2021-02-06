@@ -1,3 +1,4 @@
+from .configuration_factory import ConfigurationFactory
 from .driver_factory import DriverFactory
 
 """
@@ -9,5 +10,6 @@ from .driver_factory import DriverFactory
 """
 
 __all__ = [
+    ConfigurationFactory,
     DriverFactory
 ]
