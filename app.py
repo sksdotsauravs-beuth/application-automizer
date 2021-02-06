@@ -1,5 +1,4 @@
 import sys
-
 from source.executor.app_executor import AppExecutor
 from source.validator.parameter_validator import ParameterValidator
 

@@ -3,3 +3,9 @@ log_level: "INFO"
 # set this property if you would only like to execute a dry run. If you don't want to submit the final form
 # set this property to "yes". If you do not want to use dry run mode, just set this property to "no".
 dry_run: "no"
+# set this property to target driver executable path
+driver_path: "C:\\Users\\saurav\\Downloads"
+# set this property to target driver type
+driver_type: "chrome"
+# set this property to house_of_nations current home url
+hon_home_url: "https://www.house-of-nations.de/"

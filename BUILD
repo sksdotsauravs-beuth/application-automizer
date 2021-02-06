@@ -41,12 +41,14 @@ py_binary(
         "source/validator/*.py"
     ]),
     data = glob([
+        "resource/*.yml",
         "*.txt"
     ]),
     deps = [
         requirement("beautifulsoup4"),
         requirement("selenium"),
-        requirement("pyyaml")
+        requirement("pyyaml"),
+        requirement("validators")
     ]
 )
 

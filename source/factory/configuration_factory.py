@@ -76,10 +76,16 @@ class ConfigurationFactory:
 
         log_level = ConfigurationFactory.__get_log_level_from_yml_file(yaml_content)
         dry_run = ConfigurationFactory.__get_dry_run_from_yml_file(yaml_content)
+        hon_home_url = ConfigurationFactory.__get_hon_home_url_from_yml_file(yaml_content)
+        driver_path = ConfigurationFactory.__get_driver_path_from_yml_file(yaml_content)
+        driver_type = ConfigurationFactory.__get_driver_type_from_yml_file(yaml_content)
 
         configuration_info = ConfigurationInfo()
         configuration_info.log_level = log_level
         configuration_info.dry_run = dry_run
+        configuration_info.hon_home_url = hon_home_url
+        configuration_info.driver_path = driver_path
+        configuration_info.driver_type = driver_type
 
         return Configuration(configuration_info)
 
@@ -126,3 +132,44 @@ class ConfigurationFactory:
             print("key does not exist in yml file: " + str(exc) + "\n")
 
         return dry_run
+
+    @staticmethod
+    def __get_hon_home_url_from_yml_file(yaml_content):
+        """
+            This method will fetch the hon_home_url value from a .yml file
+        """
+
+        hon_home_url = None
+
+        try:
+            hon_home_url = yaml_content['hon_home_url']
+        except KeyError as exc:
+            print("key does not exist in yml file: " + str(exc) + "\n")
+
+        return hon_home_url
+
+    @staticmethod
+    def __get_driver_path_from_yml_file(yaml_content):
+        """
+            This method will fetch the driver_path value from a .yml file
+        """
+
+        driver_path = None
+        try:
+            driver_path = yaml_content['driver_path']
+        except KeyError as exc:
+            print("key does not exist in yml file: " + str(exc) + "\n")
+        return driver_path
+
+    @staticmethod
+    def __get_driver_type_from_yml_file(yaml_content):
+        """
+            This method will fetch the driver_type value from a .yml file
+        """
+
+        driver_type = None
+        try:
+            driver_type = yaml_content['driver_type']
+        except KeyError as exc:
+            print("key does not exist in yml file: " + str(exc) + "\n")
+        return driver_type

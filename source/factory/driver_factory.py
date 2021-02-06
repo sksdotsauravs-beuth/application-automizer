@@ -1,6 +1,6 @@
 import os
 from selenium import webdriver
-from source.model import DriverInfo
+from source.model import Configuration
 
 
 class DriverFactory:
@@ -15,17 +15,16 @@ class DriverFactory:
     """
 
     @staticmethod
-    def get_driver_instance(driver_info: DriverInfo) -> webdriver:
+    def get_driver_instance(configuration: Configuration) -> webdriver:
         """
             This method will return the driver instance based on
-            provided DriverInfo instance.
+            provided Configuration instance.
         """
-        if driver_info.get_driver_type() == "chrome":
+        if configuration.configuration_info.get_driver_type() == "chrome":
+            print("returning driver ...")
             return webdriver.Chrome(
                 executable_path=os.path.join(
-                    driver_info.get_driver_path(),
+                    configuration.configuration_info.get_driver_path(),
                     "chromedriver"
                 )
             )
-        else:
-            raise NotImplemented(f"No support yet for browser_type: {driver_info.get_driver_type()}")

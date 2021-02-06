@@ -20,3 +20,11 @@ class FileUtils:
         """
 
         return os.path.isfile(absolute_file_path)
+
+    @staticmethod
+    def is_dir(dir_path):
+        """
+            This method will check whether a directory exists (True) or not (False).
+        """
+
+        return os.path.isdir(dir_path)

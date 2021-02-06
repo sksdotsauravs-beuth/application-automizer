@@ -37,6 +37,8 @@ class AppExecutor:
     def __run(self, application):
         self.__display_begin_message()
         self.__handle_pre_steps(application)
+        application.visit_home_page()
+        application.shutdown()
 
     def __run_dry(self):
         application = self.__create_application()
@@ -57,7 +59,7 @@ class AppExecutor:
         print(self.__get_help_message())
 
     def __display_begin_message(self):
-        running_string = "Running " + AppInfo.get_name() + " " + ApplicationSubmitter.get_version() + "..."
+        running_string = AppInfo.artwork() + " " + ApplicationSubmitter.get_version() + "\n"
         processing_string = "Processing '" + str(self.__parameter_validator.get_argv()[1]) + "'..."
         self.__logger.print_log_message(running_string, LogLevel.INFO)
         self.__logger.print_log_message(processing_string, LogLevel.INFO)

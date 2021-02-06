@@ -1,4 +1,5 @@
 from .app_executor import AppExecutor
+from .application_submitter import ApplicationSubmitter
 
 """
     - author:             Saurav Kumar Saha
@@ -9,5 +10,6 @@ from .app_executor import AppExecutor
 """
 
 __all__ = [
-    AppExecutor
+    AppExecutor,
+    ApplicationSubmitter
 ]

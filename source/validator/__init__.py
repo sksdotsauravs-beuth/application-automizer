@@ -1,4 +1,5 @@
 from .parameter_validator import ParameterValidator
+from .url_validator import UrlValidator
 
 """
     - author:             Saurav Kumar Saha
@@ -9,5 +10,6 @@ from .parameter_validator import ParameterValidator
 """
 
 __all__ = [
-    ParameterValidator
+    ParameterValidator,
+    UrlValidator
 ]

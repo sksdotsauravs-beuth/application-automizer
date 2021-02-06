@@ -10,3 +10,15 @@ class AppInfo:
     @staticmethod
     def get_name():
         return "Application Automizer"
+
+    @staticmethod
+    def artwork():
+        return """
+   ⢀⢀⢀⢀ ⢀⢀⢀⢀    ⢕⢕⢕⢕⢕⢕⢕⠄        
+ ⢀⢕⢕⢕⢕⢕⢕⢕⠄         ⠁⠁⠕⢕⢕⢕⠅
+⢀⢕⢕⠕⠁⠀⢕⢕⢕⢕         ⢄⢄⢀⢀⢐⢕⢕⠅
+⢐⢕⢕⠅⠀⠀⢕⢕⢕⢕      ⢀⢐⢕⠑⠑⠕⠕⢕⢕⢕⠁
+⠐⢕⢕⢕⢄⢔⢕⢕⢕⢕⢕⢕⢕ ⢐⢕⢕ ⠀⠀⠀ ⢕⢕⢕⠅
+  ⠑⢕⢕⢕⢕⠕⠑⠕⠕⠕⠕⠕⠀⢐⢕⢕⢐⢕⢕⢕⢕⢕⠅
+   Application Automizer
+               """
