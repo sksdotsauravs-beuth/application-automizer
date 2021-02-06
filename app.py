@@ -1,22 +1,32 @@
-from factory.driver_factory import DriverFactory
-from model.driver_info import DriverInfo
+import sys
+
+from source.executor.app_executor import AppExecutor
+from source.validator.parameter_validator import ParameterValidator
 
 
-def print_app_name():
-    print('application-automizer')
+def app():
+
+    parameter_validator = ParameterValidator(sys.argv)
+    app_executor = AppExecutor(parameter_validator)
+
+    try:
+        if not parameter_validator.is_valid():
+            raise ValueError
+    except ValueError:
+        print(
+            "Invalid flag usage. One of the following errors might have occurred:" +
+            "\n" +
+            "-> Flag not used!" +
+            "\n" +
+            "-> Flag does not exist!" +
+            "\n" +
+            "-> Invalid flag input combination!" +
+            "\n" +
+            "Please use --help flag to see a list of available flags."
+        )
+        sys.exit()
+
+    app_executor.run()
 
 
-if __name__ == "__main__":
-    print_app_name()
-
-    driver_info = DriverInfo(
-        driver_path="C:/Users/saurav/Downloads"
-    )
-    driver = DriverFactory.get_driver_instance(
-        driver_info=driver_info
-    )
-
-    driver.get("https://www.house-of-nations.de/")
-    print(driver.title)
-
-    driver.close()
+app()

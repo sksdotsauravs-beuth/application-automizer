@@ -29,12 +29,17 @@ load("@pip//:requirements.bzl", "requirement")
 
 py_binary(
     name = "app",
-    srcs = [
-        "app.py",
-        "infrastructure/requirements_processor.py",
-        "model/driver_info.py",
-        "factory/driver_factory.py"
-    ],
+    srcs = glob([
+        "*.py",
+        "source/executor/*.py",
+        "source/factory/*.py",
+        "source/infrasturcture/*.py",
+        "source/model/*.py",
+        "source/output/*.py",
+        "source/pages/**/*.py",
+        "source/utils/*.py",
+        "source/validator/*.py"
+    ]),
     data = glob([
         "*.txt"
     ]),

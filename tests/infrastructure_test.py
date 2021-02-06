@@ -4,21 +4,22 @@ import bs4
 import os
 import selenium
 
-from infrastructure.requirements_processor import RequirementsProcessor
+from source.infrastructure import RequirementsReader
 
 
 class InfrastructureTest(unittest.TestCase):
 
-    __processor = RequirementsProcessor(os.path.join(os.getcwd(), 'requirements.txt'))
-    __processor.prepare_requirements_dict()
+    __reader = RequirementsReader(
+        os.path.join(os.getcwd(), 'requirements.txt')
+    )
 
     def test_beautifulsoup4(self):
         version = bs4.__version__
-        self.assertEqual(self.__processor.get_version_of('beautifulsoup4'), version)
+        self.assertEqual(self.__reader.get_version_of('beautifulsoup4'), version)
 
     def test_selenium(self):
         version = selenium.__version__
-        self.assertEqual(self.__processor.get_version_of(selenium.__name__), version)
+        self.assertEqual(self.__reader.get_version_of(selenium.__name__), version)
 
 
 if __name__ == '__main__':
