@@ -8,7 +8,7 @@ class ConfigurationFactory:
     """
         - author:             Saurav Kumar Saha
         - created:            2021-02-06
-        - changed:            2021-02-06
+        - changed:            2021-02-07
 
         This class represents a configuration .yml file. Important settings
         can be defined inside this file like:
@@ -43,7 +43,7 @@ class ConfigurationFactory:
     # private
 
     @staticmethod
-    def __is_valid_yml_file(path_to_yml_file):
+    def __is_valid_yml_file(path_to_yml_file: str) -> bool:
         """
             This method will check if the given file is a valid .yml file.
         """
@@ -51,14 +51,14 @@ class ConfigurationFactory:
         return path_to_yml_file.endswith(".yml") or path_to_yml_file.endswith(".yaml")
 
     @staticmethod
-    def __open_yml_file(path_to_yml_file):
+    def __open_yml_file(path_to_yml_file: str):
         """
             This method will open a .yml file in read mode.
         """
 
         yaml_content = None
 
-        with open(path_to_yml_file, 'r') as stream:
+        with open(path_to_yml_file, 'r', encoding='utf8') as stream:
             try:
                 yaml_content = yaml.safe_load(stream)
             except yaml.YAMLError as exc:
@@ -67,7 +67,7 @@ class ConfigurationFactory:
         return yaml_content
 
     @staticmethod
-    def __build_configuration_from_yml_file(yaml_content):
+    def __build_configuration_from_yml_file(yaml_content: dict) -> Configuration:
         """
             This method will build all necessary attributes for a
             'Configuration' instance and pass it to the class
@@ -76,21 +76,23 @@ class ConfigurationFactory:
 
         log_level = ConfigurationFactory.__get_log_level_from_yml_file(yaml_content)
         dry_run = ConfigurationFactory.__get_dry_run_from_yml_file(yaml_content)
-        hon_home_url = ConfigurationFactory.__get_hon_home_url_from_yml_file(yaml_content)
         driver_path = ConfigurationFactory.__get_driver_path_from_yml_file(yaml_content)
         driver_type = ConfigurationFactory.__get_driver_type_from_yml_file(yaml_content)
+        hon_home_url = ConfigurationFactory.__get_hon_home_url_from_yml_file(yaml_content)
+        hon_home_title = ConfigurationFactory.__get_hon_home_title_from_yml_file(yaml_content)
 
         configuration_info = ConfigurationInfo()
         configuration_info.log_level = log_level
         configuration_info.dry_run = dry_run
-        configuration_info.hon_home_url = hon_home_url
         configuration_info.driver_path = driver_path
         configuration_info.driver_type = driver_type
+        configuration_info.hon_home_url = hon_home_url
+        configuration_info.hon_home_title = hon_home_title
 
         return Configuration(configuration_info)
 
     @staticmethod
-    def __get_log_level_from_yml_file(yaml_content):
+    def __get_log_level_from_yml_file(yaml_content: dict) -> LogLevel:
         """
             This method will fetch the log level value from a .yml file
         """
@@ -106,7 +108,7 @@ class ConfigurationFactory:
         return log_level
 
     @staticmethod
-    def __get_log_level_value(log_level_string):
+    def __get_log_level_value(log_level_string: str) -> LogLevel:
         log_level = None
 
         if log_level_string == LogLevel.ERROR.name:
@@ -119,7 +121,7 @@ class ConfigurationFactory:
         return log_level
 
     @staticmethod
-    def __get_dry_run_from_yml_file(yaml_content):
+    def __get_dry_run_from_yml_file(yaml_content: dict) -> str:
         """
             This method will fetch the dry run value from a .yml file
         """
@@ -134,7 +136,33 @@ class ConfigurationFactory:
         return dry_run
 
     @staticmethod
-    def __get_hon_home_url_from_yml_file(yaml_content):
+    def __get_driver_path_from_yml_file(yaml_content: dict) -> str:
+        """
+            This method will fetch the driver_path value from a .yml file
+        """
+
+        driver_path = None
+        try:
+            driver_path = yaml_content['driver_path']
+        except KeyError as exc:
+            print("key does not exist in yml file: " + str(exc) + "\n")
+        return driver_path
+
+    @staticmethod
+    def __get_driver_type_from_yml_file(yaml_content: dict) -> str:
+        """
+            This method will fetch the driver_type value from a .yml file
+        """
+
+        driver_type = None
+        try:
+            driver_type = yaml_content['driver_type']
+        except KeyError as exc:
+            print("key does not exist in yml file: " + str(exc) + "\n")
+        return driver_type
+
+    @staticmethod
+    def __get_hon_home_url_from_yml_file(yaml_content: dict) -> str:
         """
             This method will fetch the hon_home_url value from a .yml file
         """
@@ -149,27 +177,16 @@ class ConfigurationFactory:
         return hon_home_url
 
     @staticmethod
-    def __get_driver_path_from_yml_file(yaml_content):
+    def __get_hon_home_title_from_yml_file(yaml_content: dict) -> str:
         """
-            This method will fetch the driver_path value from a .yml file
+            This method will fetch the hon_home_title value from a .yml file
         """
 
-        driver_path = None
+        hon_home_title = None
+
         try:
-            driver_path = yaml_content['driver_path']
+            hon_home_title = yaml_content['hon_home_title']
         except KeyError as exc:
             print("key does not exist in yml file: " + str(exc) + "\n")
-        return driver_path
 
-    @staticmethod
-    def __get_driver_type_from_yml_file(yaml_content):
-        """
-            This method will fetch the driver_type value from a .yml file
-        """
-
-        driver_type = None
-        try:
-            driver_type = yaml_content['driver_type']
-        except KeyError as exc:
-            print("key does not exist in yml file: " + str(exc) + "\n")
-        return driver_type
+        return hon_home_title

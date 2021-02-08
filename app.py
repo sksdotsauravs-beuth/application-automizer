@@ -4,6 +4,16 @@ from source.validator.parameter_validator import ParameterValidator
 
 
 def app():
+    """
+        - author:             Saurav Kumar Saha
+        - created:            2020-12-17
+        - changed:            2021-02-07
+
+        This method is the starting point of execution for
+        the application. It checks for the validity of
+        command arguments, creates an instance of
+        AppExecutor and invokes executor's run() function
+    """
 
     parameter_validator = ParameterValidator(sys.argv)
     app_executor = AppExecutor(parameter_validator)

@@ -2,7 +2,7 @@ class RequirementsReader:
     """
         - author:             Saurav Kumar Saha
         - created:            2020-12-17
-        - changed:            2021-02-03
+        - changed:            2021-02-07
 
         This class contains information from requirements.txt file.
     """
@@ -29,7 +29,7 @@ class RequirementsReader:
 
     # private
 
-    def __prepare_requirements_dict(self) -> None:
+    def __prepare_requirements_dict(self):
         """
             This method reads the requirements.txt file and
             prepares a dict() of versions for the packages.

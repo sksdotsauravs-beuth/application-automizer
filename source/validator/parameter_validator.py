@@ -3,19 +3,19 @@ from source.utils.file_utils import FileUtils
 
 class ParameterValidator:
     """
-        author:             Saurav Kumar Saha
-        created:            2021-02-05
-        changed:            2021-02-05
+        - author:             Saurav Kumar Saha
+        - created:            2021-02-05
+        - changed:            2021-02-07
 
         This class will validate passed parameters.
     """
 
     # public
 
-    def __init__(self, argv):
+    def __init__(self, argv: list):
         self.__argv = argv
 
-    def is_valid(self):
+    def is_valid(self) -> bool:
         """
             This method will check if the passed parameters are valid.
         """
@@ -27,41 +27,41 @@ class ParameterValidator:
             self.is_help_call()
         )
 
-    def is_help_call(self):
+    def is_help_call(self) -> bool:
         """
             This method will check if the help call is valid.
         """
 
         return self.__has_two_arguments() and str(self.__argv[1]) == "--help"
 
-    def is_version_call(self):
+    def is_version_call(self) -> bool:
         """
             This method will check if the version call is valid.
         """
 
         return self.__has_two_arguments() and str(self.__argv[1]) == "--version"
 
-    def is_normal_run_call(self):
+    def is_normal_run_call(self) -> bool:
         """
             This method will check if the normal run call is valid.
         """
 
         return self.__has_two_arguments() and self.__parameter_file_exists()
 
-    def is_dry_run_call(self):
+    def is_dry_run_call(self) -> bool:
         """
             This method will check if the dry run call is valid.
         """
 
         return len(self.__argv) == 3 and self.__parameter_file_exists() and str(self.__argv[2]) == "--dry-run"
 
-    def get_argv(self):
+    def get_argv(self) -> list:
         return self.__argv
 
     # private
 
-    def __has_two_arguments(self):
+    def __has_two_arguments(self) -> bool:
         return len(self.__argv) == 2
 
-    def __parameter_file_exists(self):
+    def __parameter_file_exists(self) -> bool:
         return FileUtils.exists(str(self.__argv[1]))

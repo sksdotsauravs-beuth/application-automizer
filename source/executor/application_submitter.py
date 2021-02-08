@@ -1,3 +1,4 @@
+import sys
 from source.factory import ConfigurationFactory, DriverFactory
 from source.model import LogLevel
 from source.output import Logger
@@ -6,9 +7,9 @@ from source.pages.house_of_nations import HomePage
 
 class ApplicationSubmitter:
     """
-        author:             Saurav Kumar Saha
-        created:            2021-02-05
-        changed:            2021-02-05
+        - author:             Saurav Kumar Saha
+        - created:            2021-02-05
+        - changed:            2021-02-07
 
         This class holds the actual program functionality.
     """
@@ -21,21 +22,16 @@ class ApplicationSubmitter:
         self.__logger = None
         self.__driver = None
 
-    def create_configuration(self):
+    def initialize(self):
         """
-            This method will create a configuration based on a specific .yml file.
+            This method will initialize the class properties.
         """
 
         self.__configuration = ConfigurationFactory.build(self.__yaml_file_path)
         self.__logger = Logger(self.__configuration.configuration_info.log_level)
-        self.__driver = DriverFactory.get_driver_instance(self.__configuration)
-
-    def get_configuration(self):
-        """
-            This method will return the initial configuration.
-        """
-
-        return self.__configuration
+        self.__driver = DriverFactory.get_instance(
+            self.__configuration.configuration_info.driver_info
+        )
 
     def set_dry_run_parameter_configuration(self):
         """
@@ -45,21 +41,35 @@ class ApplicationSubmitter:
         self.__configuration.configuration_info.dry_run = "yes"
 
     def visit_home_page(self):
-        homepage = HomePage(self.__configuration)
-        self.logger.print_log_message(f'home_url: {homepage.url}', LogLevel.INFO)
+        """
+            This method will emulate a browser session to visit home page
+        """
+
+        homepage = HomePage(self.__configuration, self.__driver)
+        self.__logger.print_log_message(LogLevel.INFO, '>>> Go to home page...')
         self.__driver.get(homepage.url)
-        self.logger.print_log_message(f'home_title: {self.__driver.title}', LogLevel.INFO)
+        if homepage.at():
+            self.__logger.print_log_message(LogLevel.INFO, '>>> Currently at home page...')
 
     def shutdown(self):
-        self.__close_driver()
+        """
+            This method will shutdown the application.
+        """
 
-    def get_logger(self):
+        if self.__driver:
+            self.__logger.print_log_message(LogLevel.INFO, '>>> Shut down application...')
+            self.__close_driver()
+
+        sys.exit()
+
+    def get_logger(self) -> Logger:
+        """
+            This method will return the logger instance
+        """
+
         return self.__logger
 
-    def set_logger(self, logger):
-        self.__logger = logger
-
-    logger = property(get_logger, set_logger)
+    logger = property(get_logger)
 
     # private
 
@@ -68,10 +78,3 @@ class ApplicationSubmitter:
 
     def __close_driver(self):
         self.__driver.close()
-
-    @staticmethod
-    def get_version():
-        """
-            This method will print out the version of this application.
-        """
-        return "2021.2.0"

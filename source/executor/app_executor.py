@@ -7,7 +7,7 @@ class AppExecutor:
     """
         - author:             Saurav Kumar Saha
         - created:            2021-02-04
-        - changed:            2020-02-04
+        - changed:            2020-02-07
 
         This class will execute the ApplicationSubmitter class by providing specific output.
         In addition to that it will execute pre and post actions.
@@ -30,15 +30,9 @@ class AppExecutor:
         if self.__parameter_validator.is_help_call():
             self.__display_help()
         if self.__parameter_validator.is_version_call():
-            print(ApplicationSubmitter.get_version())
+            print(AppInfo.get_version())
 
     # private
-
-    def __run(self, application):
-        self.__display_begin_message()
-        self.__handle_pre_steps(application)
-        application.visit_home_page()
-        application.shutdown()
 
     def __run_dry(self):
         application = self.__create_application()
@@ -49,32 +43,41 @@ class AppExecutor:
         application = self.__create_application()
         self.__run(application)
 
-    def __handle_pre_steps(self, application):
-        self.__logger.print_log_message("Execute preparation actions...", LogLevel.INFO)
-
-    def __handle_post_steps(self, application):
-        self.__logger.print_log_message("Execute post actions...", LogLevel.INFO)
-
-    def __display_help(self):
-        print(self.__get_help_message())
-
-    def __display_begin_message(self):
-        running_string = AppInfo.artwork() + " " + ApplicationSubmitter.get_version() + "\n"
-        processing_string = "Processing '" + str(self.__parameter_validator.get_argv()[1]) + "'..."
-        self.__logger.print_log_message(running_string, LogLevel.INFO)
-        self.__logger.print_log_message(processing_string, LogLevel.INFO)
-
     def __create_application(self):
         submitter = ApplicationSubmitter(
             str(self.__parameter_validator.get_argv()[1])
         )
-        submitter.create_configuration()
+        submitter.initialize()
         self.__logger = submitter.logger
         return submitter
 
+    def __run(self, application):
+        try:
+            self.__display_begin_message()
+            self.__handle_pre_steps()
+            application.visit_home_page()
+            self.__handle_post_steps()
+        finally:
+            application.shutdown()
+
+    def __display_begin_message(self):
+        self.__logger.print_log_message(LogLevel.INFO, self.__get_artwork())
+        processing_string = ">>> Process '" + str(self.__parameter_validator.get_argv()[1]) + "'..."
+        self.__logger.print_log_message(LogLevel.INFO, processing_string)
+
+    def __handle_pre_steps(self):
+        self.__logger.print_log_message(LogLevel.INFO, ">>> Execute preparation actions...")
+
+    def __handle_post_steps(self):
+        self.__logger.print_log_message(LogLevel.INFO, ">>> Execute post actions...")
+
+    def __display_help(self):
+        print(self.__get_artwork())
+        print(self.__get_help_message())
+
     @staticmethod
-    def __get_help_message():
-        message = \
+    def __get_help_message() -> str:
+        message =\
             "*******************************************************************\n" + \
             "                               Help                                \n" + \
             "*******************************************************************\n" + \
@@ -91,3 +94,7 @@ class AppExecutor:
             "...................................................................\n"
 
         return message
+
+    @staticmethod
+    def __get_artwork() -> str:
+        return AppInfo.get_text_logo() + " v" + AppInfo.get_version() + "\n"

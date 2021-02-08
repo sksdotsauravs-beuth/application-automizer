@@ -8,6 +8,14 @@ from source.infrastructure import RequirementsReader
 
 
 class InfrastructureTest(unittest.TestCase):
+    """
+        - author:             Saurav Kumar Saha
+        - created:            2020-12-17
+        - changed:            2021-02-07
+
+        This class performs unit tests for the version of used libraries
+        in requirements.txt file.
+    """
 
     __reader = RequirementsReader(
         os.path.join(os.getcwd(), 'requirements.txt')

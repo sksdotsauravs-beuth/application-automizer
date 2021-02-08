@@ -1,0 +1,171 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class source.AppInfo {
+    {static} +get_name() -> str
+    {static} +get_version() -> str
+    {static} +get_text_logo() -> str
+}
+
+class source.output.Logger {
+    -__log_level: LogLevel
+    +print_log_message(log_level: LogLevel, message: str)
+}
+
+enum source.model.LogLevel {
+    ERROR
+    DEBUG
+    INFO
+}
+
+source.model.LogLevel -- source.output.Logger : < owns
+
+class source.model.DriverInfo {
+    -__driver_path: str
+    -__driver_type: str
+    +get_driver_path() -> str
+    +set_driver_path(driver_path: str)
+    +get_driver_type() -> str
+    +set_driver_type(driver_type: str)
+}
+
+
+class source.model.ConfigurationInfo {
+    -__log_level: LogLevel
+    -__dry_run: str
+    -__driver_type: str
+    -__driver_path: str
+    -__driver_info: DriverInfo
+    -__hon_home_url: str
+    -__hon_home_title: str
+
+    +get_log_level() -> LogLevel
+    +set_log_level(log_level: LogLevel)
+    +get_dry_run() -> str
+    +set_dry_run(dry_run: str)
+    +get_driver_path() -> str
+    +set_driver_path(driver_path: str)
+    +get_driver_type() -> str
+    +set_driver_type(driver_type: str)
+    +get_driver_info() -> DriverInfo
+    +set_driver_info(driver_info: DriverInfo)
+    +get_hon_home_url() -> str
+    +set_hon_home_url(hon_home_url: str)
+    +get_hon_home_title() -> str
+    +set_hon_home_title(hon_home_title: str)
+}
+
+source.model.LogLevel -- source.model.ConfigurationInfo : < owns
+source.model.DriverInfo -- source.model.ConfigurationInfo : < owns
+
+class source.model.Configuration {
+    -__configuration_info: ConfigurationInfo
+    +get_configuration_info(): ConfigurationInfo
+    -__validate(configuration_info: ConfigurationInfo)
+    -__init_log_level(log_level: LogLevel)
+    -__init_dry_run(dry_run: str)
+    -__init_driver_info(driver_path: str, driver_type: str)
+    -__init_hon_home_url(hon_home_url: str)
+    -__init_hon_home_title(hon_home_title: str)
+}
+
+source.model.ConfigurationInfo -- source.model.Configuration : < owns
+
+class source.utils.FileUtils {
+    {static} +exists(absolute_file_path: str) -> bool
+    {static} +is_dir(absolute_dir_path: str) -> bool
+}
+
+class source.validator.ParameterValidator {
+    -__argv: list
+    +is_valid() -> bool
+    +is_help_call() -> bool
+    +is_version_call() -> bool
+    +is_normal_run_call() -> bool
+    +is_dry_run_call() -> bool
+    +get_argv() -> list
+    -__has_two_arguments() -> bool
+    -__parameter_file_exists() -> bool
+}
+
+class source.validator.UrlValidator {
+    -__url: str
+    +is_valid() -> bool
+    -__is_valid_url() -> bool
+}
+
+class source.infrastructure.RequirementsReader {
+    -__file_path: str
+    +get_file_path() -> str
+    +get_version_of(module_name: str) -> str
+    -__prepare_requirements_dict()
+}
+
+class source.factory.DriverFactory {
+    {static} +get_instance(driver_info: DriverInfo) -> webdriver
+
+}
+
+class source.factory.ConfigurationFactory {
+    {static} +build(path_to_yml_file: str)
+    {static} -__is_valid_yml_file(path_to_yml_file: str)) -> bool
+    {static} -__open_yml_file(path_to_yml_file: str)
+    {static} -__build_configuration_from_yml_file(yaml_content: dict) -> Configuration
+    {static} -__get_log_level_from_yml_file(yaml_content: dict) -> LogLevel
+    {static} -__get_log_level_value(log_level_string: str) -> LogLevel
+    {static} -__get_dry_run_from_yml_file(yaml_content: dict) -> str
+    {static} -__get_driver_path_from_yml_file(yaml_content: dict) -> str
+    {static} -__get_driver_type_from_yml_file(yaml_content: dict) -> str
+    {static} -__get_hon_home_url_from_yml_file(yaml_content: dict) -> str
+    {static} -__get_hon_home_title_from_yml_file(yaml_content: dict) -> str
+}
+
+abstract class source.pages.Page {
+    {abstract} +get_url() -> str
+    {abstract} +at() -> bool
+}
+
+class source.pages.house_of_nations.HomePage implements source.pages.Page {
+    -__configuration: Configuration
+    -__driver: webdriver
+    +get_url() -> bool
+    +at() -> bool
+}
+
+class source.executor.ApplicationSubmitter {
+    -__yaml_file_path: str
+    -__configuration: Configuration
+    -__logger: Logger
+    -__driver: webdriver
+    +initialize()
+    +set_dry_run_parameter_configuration()
+    +visit_home_page()
+    +shutdown()
+    +get_logger() -> Logger
+    -__dry_run_enabled() -> bool
+    -__close_driver()
+}
+
+source.output.Logger -- source.executor.ApplicationSubmitter : < owns
+source.model.Configuration -- source.executor.ApplicationSubmitter : < owns
+
+class source.executor.AppExecutor {
+    -__parameter_validator: ParameterValidator
+    -__logger: Logger
+    +run()
+    -__run_dry()
+    -__run_normal()
+    -__create_application()
+    -__run()
+    -__display_begin_message()
+    -__handle_pre_steps()
+    -__handle_post_steps()
+    -__display_help()
+    -__get_help_message() -> str
+    -__get_artwork() -> str
+}
+
+source.output.Logger -- source.executor.AppExecutor : < owns
+source.validator.ParameterValidator -- source.executor.AppExecutor : < owns
+
+@enduml

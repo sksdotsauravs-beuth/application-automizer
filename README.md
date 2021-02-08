@@ -1,1 +1,9 @@
 # application-automizer
+A simple command line application that automates the online \
+reservation of available rooms/apartments in House of Nations
+website.
+
+### UML
+*Class Diagram*
+
+![alt Class Diagram](images/class_diagram.svg)
