@@ -12,8 +12,8 @@ from .configuration import Configuration
 """
 
 __all__ = [
-    LogLevel,
-    DriverInfo,
-    ConfigurationInfo,
-    Configuration
+    "LogLevel",
+    "DriverInfo",
+    "ConfigurationInfo",
+    "Configuration"
 ]

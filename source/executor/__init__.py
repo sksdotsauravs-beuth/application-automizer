@@ -10,6 +10,6 @@ from .application_submitter import ApplicationSubmitter
 """
 
 __all__ = [
-    AppExecutor,
-    ApplicationSubmitter
+    "AppExecutor",
+    "ApplicationSubmitter"
 ]

@@ -77,21 +77,32 @@ class AppExecutor:
 
     @staticmethod
     def __get_help_message() -> str:
-        message =\
-            "*******************************************************************\n" + \
-            "                               Help                                \n" + \
-            "*******************************************************************\n" + \
-            "\n" + \
-            "Command" + "\t\t\t\t\t" + "Description\n" + \
-            "-------------------------------------------------------------------\n" + \
-            "python app.py config.yml\t\truns the application\n" + \
-            "...................................................................\n" + \
-            "python app.py config.yml --dry-run\truns the application except\n" + \
-            "\t\t\t\t\t" + "submitting final form\n" + \
-            "...................................................................\n" + \
-            "python app.py --version\t\t\tprints out the current\n" + \
-            "\t\t\t\t\t" + "application version\n" + \
-            "...................................................................\n"
+        star_line = 68 * "*"
+        hyphen_line = 68 * "-"
+        dot_line = 68 * "."
+        spaces_help_line = 32 * " "
+        newline = "\n"
+
+        def __n_tab(n: int) -> str:
+            return n * "\t"
+        normal_run_command = "python app.py config.yml"
+        dry_run_command = "python app.py config.yml --dry-run"
+        version_command = "python app.py --version"
+        message = \
+            star_line + newline + \
+            spaces_help_line + "Help" + spaces_help_line + newline + \
+            star_line + newline + \
+            newline + \
+            "Command" + __n_tab(5) + "Description" + newline + \
+            hyphen_line + newline + \
+            normal_run_command + __n_tab(2) + "runs the application" + newline + \
+            dot_line + newline + \
+            dry_run_command + __n_tab(1) + "runs the application except" + newline + \
+            __n_tab(5) + "submitting final form" + newline + \
+            dot_line + newline + \
+            version_command + __n_tab(3) + "prints out the current" + newline +\
+            __n_tab(5) + "application version" + newline + \
+            dot_line + newline
 
         return message
 

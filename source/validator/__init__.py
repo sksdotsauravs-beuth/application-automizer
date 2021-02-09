@@ -10,6 +10,6 @@ from .url_validator import UrlValidator
 """
 
 __all__ = [
-    ParameterValidator,
-    UrlValidator
+    "ParameterValidator",
+    "UrlValidator"
 ]

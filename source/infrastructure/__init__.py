@@ -9,5 +9,5 @@ from .requirements_reader import RequirementsReader
 """
 
 __all__ = [
-    RequirementsReader
+    "RequirementsReader"
 ]

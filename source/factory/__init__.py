@@ -10,6 +10,6 @@ from .driver_factory import DriverFactory
 """
 
 __all__ = [
-    ConfigurationFactory,
-    DriverFactory
+    "ConfigurationFactory",
+    "DriverFactory"
 ]

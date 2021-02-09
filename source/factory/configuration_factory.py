@@ -103,7 +103,7 @@ class ConfigurationFactory:
             log_level_string = yaml_content['log_level']
             log_level = ConfigurationFactory.__get_log_level_value(log_level_string)
         except KeyError as exc:
-            print("key does not exist in yml file: " + str(exc) + "\n")
+            print(ConfigurationFactory.__get_key_missing_error_message(exc))
 
         return log_level
 
@@ -131,7 +131,7 @@ class ConfigurationFactory:
         try:
             dry_run = yaml_content['dry_run']
         except KeyError as exc:
-            print("key does not exist in yml file: " + str(exc) + "\n")
+            print(ConfigurationFactory.__get_key_missing_error_message(exc))
 
         return dry_run
 
@@ -145,7 +145,7 @@ class ConfigurationFactory:
         try:
             driver_path = yaml_content['driver_path']
         except KeyError as exc:
-            print("key does not exist in yml file: " + str(exc) + "\n")
+            print(ConfigurationFactory.__get_key_missing_error_message(exc))
         return driver_path
 
     @staticmethod
@@ -158,7 +158,7 @@ class ConfigurationFactory:
         try:
             driver_type = yaml_content['driver_type']
         except KeyError as exc:
-            print("key does not exist in yml file: " + str(exc) + "\n")
+            print(ConfigurationFactory.__get_key_missing_error_message(exc))
         return driver_type
 
     @staticmethod
@@ -172,7 +172,7 @@ class ConfigurationFactory:
         try:
             hon_home_url = yaml_content['hon_home_url']
         except KeyError as exc:
-            print("key does not exist in yml file: " + str(exc) + "\n")
+            print(ConfigurationFactory.__get_key_missing_error_message(exc))
 
         return hon_home_url
 
@@ -187,6 +187,10 @@ class ConfigurationFactory:
         try:
             hon_home_title = yaml_content['hon_home_title']
         except KeyError as exc:
-            print("key does not exist in yml file: " + str(exc) + "\n")
+            print(ConfigurationFactory.__get_key_missing_error_message(exc))
 
         return hon_home_title
+
+    @staticmethod
+    def __get_key_missing_error_message(exc: KeyError) -> str:
+        return "key does not exist in yml file: " + str(exc) + "\n"
