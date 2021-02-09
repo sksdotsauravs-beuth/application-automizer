@@ -1,5 +1,6 @@
 # application-automizer
-A simple command line application that automates the online reservation of available rooms/apartments in House of Nations website.
+A simple command line application that automates the online reservation of available rooms/apartments in \
+[House of Nations](https://www.house-of-nations.de/) website.
 
 ![alt Application Artwork](images/aa-artwork.png)
 
