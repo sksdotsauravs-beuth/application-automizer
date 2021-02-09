@@ -46,6 +46,8 @@ class ApplicationSubmitter:
         """
 
         homepage = HomePage(self.__configuration, self.__driver)
+        if self.__dry_run_enabled():
+            self.__logger.print_log_message(LogLevel.INFO, '>>> executing dry-run...')
         self.__logger.print_log_message(LogLevel.INFO, '>>> Go to home page...')
         self.__driver.get(homepage.url)
         if homepage.at():
