@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="345px" preserveAspectRatio="none" style="width:628px;height:345px;" version="1.1" viewBox="0 0 628 345" width="628px" zoomAndPan="magnify"><defs><filter height="300%" id="ft9a70g19kvjc" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[a6076477fe0b14c4339293fa108b9953]
+cluster application-automizer--><rect fill="#FFFFFF" filter="url(#ft9a70g19kvjc)" height="326" style="stroke:#000000;stroke-width:1.5;" width="216" x="102" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="85" x="167.5" y="23.5332">«Application»</text><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="151" x="134.5" y="41.1426">application-automizer</text><ellipse cx="210.169" cy="80.0338" fill="#FEFECE" filter="url(#ft9a70g19kvjc)" rx="83.169" ry="19.0338" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="122" x="149.169" y="83.7623">Run the application</text><ellipse cx="210.1309" cy="154.8262" fill="#FEFECE" filter="url(#ft9a70g19kvjc)" rx="92.1309" ry="20.8262" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="143" x="138.6309" y="158.5547">Dry run the application</text><ellipse cx="209.8789" cy="229.8758" fill="#FEFECE" filter="url(#ft9a70g19kvjc)" rx="79.8789" ry="18.3758" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="114" x="151.8373" y="233.9024">Check the version</text><ellipse cx="210.0677" cy="300.2135" fill="#FEFECE" filter="url(#ft9a70g19kvjc)" rx="71.5677" ry="16.7135" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92" x="161.0677" y="304.7301">Check for help</text><!--MD5=[8fc3522a43f8c7199df5e09e5bb0188e]
+entity user--><ellipse cx="30.5" cy="179.1094" fill="#FEFECE" filter="url(#ft9a70g19kvjc)" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.5;"/><path d="M30.5,187.1094 L30.5,214.1094 M17.5,195.1094 L43.5,195.1094 M30.5,214.1094 L17.5,229.1094 M30.5,214.1094 L43.5,229.1094 " fill="none" filter="url(#ft9a70g19kvjc)" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="49" x="6" y="249.1426">Student</text><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="46" x="7.5" y="166.5332">«User»</text><ellipse cx="518.837" cy="115.9674" fill="#FEFECE" filter="url(#ft9a70g19kvjc)" rx="97.837" ry="21.9674" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="156" x="440.837" y="119.6959">Specify the configuration</text><!--MD5=[e71913910ae60f5842a843a20d6ecd39]
+link user to UC1--><path d="M55.24,158.45 C65.43,143.18 78.56,127.09 94,116 C107.78,106.1 124.38,98.86 140.61,93.59 " fill="none" id="user-to-UC1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="145.64,92.01,135.8547,90.8932,140.8701,93.5095,138.2539,98.525,145.64,92.01" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[20aeaa20d1880359803c0703a4b24425]
+link user to UC2--><path d="M55.14,194.68 C64.42,191.87 75.18,188.69 85,186 C103.09,181.04 122.76,175.97 140.99,171.41 " fill="none" id="user-to-UC2" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="146.09,170.14,136.3921,168.422,141.2368,171.3426,138.3162,176.1872,146.09,170.14" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[17d4c6462e07b4f1b5dbb0e87d08d5e6]
+link user to UC3--><path d="M55.07,205.72 C76.29,209.07 108.58,214.16 138.12,218.82 " fill="none" id="user-to-UC3" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="143.21,219.62,134.9496,214.2567,138.272,218.8351,133.6936,222.1575,143.21,219.62" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[b2cfa0738cc752f103aa40c770997175]
+link user to UC4--><path d="M55.02,232.1 C65.77,244.13 79.37,257.18 94,266 C110.54,275.97 130.2,283.18 148.54,288.32 " fill="none" id="user-to-UC4" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="153.68,289.71,146.0465,283.4867,148.8555,288.3968,143.9454,291.2059,153.68,289.71" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[33db5329112521c846cf0b630a56623e]
+link UC1 to UC5--><path d="M284.14,88.58 C326.84,93.58 381.08,99.94 426.57,105.28 " fill="none" id="UC1-to-UC5" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="431.79,105.89,423.3198,100.8644,426.8243,105.305,422.3838,108.8095,431.79,105.89" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55" x="335" y="91.4951">«include»</text><!--MD5=[436623159342f13c9fd9ed0a1f967804]
+link UC2 to UC5--><path d="M290.86,144.86 C333.03,139.5 384.91,132.91 428.44,127.38 " fill="none" id="UC2-to-UC5" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="433.44,126.74,424.0083,123.9039,428.4797,127.369,425.0147,131.8404,433.44,126.74" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55" x="335" y="130.4951">«include»</text><!--MD5=[53e333ecd4fba4560756f44b8b0199e1]
+@startuml
+'https://plantuml.com/use-case-diagram
+
+left to right direction
+Student <<User>> as user
+
+:application-automizer: <<Application>>
+rectangle application-automizer {
+  usecase "Run the application" as UC1
+  usecase "Dry run the application" as UC2
+  usecase "Check the version" as UC3
+  usecase "Check for help" as UC4
+}
+
+usecase "Specify the configuration" as UC5
+
+user - -> UC1
+user - -> UC2
+user - -> UC3
+user - -> UC4
+
+left to right direction
+(UC1) .-> (UC5) : <<include>>
+(UC2) .-> (UC5) : <<include>>
+
+@enduml
+
+@startuml
+
+left to right direction
+Student <<User>> as user
+
+:application-automizer: <<Application>>
+rectangle application-automizer {
+  usecase "Run the application" as UC1
+  usecase "Dry run the application" as UC2
+  usecase "Check the version" as UC3
+  usecase "Check for help" as UC4
+}
+
+usecase "Specify the configuration" as UC5
+
+user - -> UC1
+user - -> UC2
+user - -> UC3
+user - -> UC4
+
+left to right direction
+(UC1) .-> (UC5) : <<include>>
+(UC2) .-> (UC5) : <<include>>
+
+@enduml
+
+PlantUML version 1.2021.00(Sun Jan 10 11:25:05 CET 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: US
+--></g></svg>

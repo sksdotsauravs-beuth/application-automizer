@@ -118,6 +118,7 @@ class source.factory.ConfigurationFactory {
     {static} -__get_driver_type_from_yml_file(yaml_content: dict) -> str
     {static} -__get_hon_home_url_from_yml_file(yaml_content: dict) -> str
     {static} -__get_hon_home_title_from_yml_file(yaml_content: dict) -> str
+    {static} -__get_key_missing_error_message(exc: KeyError) -> str
 }
 
 abstract class source.pages.Page {

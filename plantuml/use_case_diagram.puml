@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+left to right direction
+Student <<User>> as user
+
+:application-automizer: <<Application>>
+rectangle application-automizer {
+  usecase "Run the application" as UC1
+  usecase "Dry run the application" as UC2
+  usecase "Check the version" as UC3
+  usecase "Check for help" as UC4
+}
+
+usecase "Specify the configuration" as UC5
+
+user --> UC1
+user --> UC2
+user --> UC3
+user --> UC4
+
+left to right direction
+(UC1) .-> (UC5) : <<include>>
+(UC2) .-> (UC5) : <<include>>
+
+@enduml
