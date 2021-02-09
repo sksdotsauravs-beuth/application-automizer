@@ -5,6 +5,7 @@ A simple command line application that automates the online reservation of avail
 
 ### UML
 *Use Case Diagram*
+
 ![alt Use Case Diagram](images/use_case_diagram.svg)
 
 *Class Diagram*
