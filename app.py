@@ -16,7 +16,6 @@ def app():
     """
 
     parameter_validator = ParameterValidator(sys.argv)
-    app_executor = AppExecutor(parameter_validator)
 
     try:
         if not parameter_validator.is_valid():
@@ -35,6 +34,7 @@ def app():
         )
         sys.exit()
 
+    app_executor = AppExecutor(parameter_validator)
     app_executor.run()
 
 

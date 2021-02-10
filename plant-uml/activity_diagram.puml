@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+start
+:app();
+:new ParameterValidator;
+if (ParameterValidator.is_valid()) then (yes)
+  :new AppExecutor;
+  :AppExecutor.run();
+  if (is_help_call())
+    #palegreen:display_help();
+    stop
+  elseif (is_version_call())
+    #palegreen:print version;
+    stop
+  elseif (is_dry_run_call())
+    :run_dry();
+  else
+    :run_normal();
+  endif
+  :new ApplicationSubmitter;
+  :display_begin_message();
+  :handle_pre_steps();
+  :visit_home_page();
+  :go_to_english_version();
+  :go_to_application_page();
+  if (dry_run_enabled()) then (yes)
+  else (no)
+    :submit_search_form();
+  endif
+  :handle_post_steps();
+  #palegreen:success;
+else (no)
+  #pink:error;
+  stop
+endif
+stop
+@enduml
