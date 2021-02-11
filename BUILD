@@ -53,7 +53,7 @@ py_binary(
 )
 
 py_test(
-    name = "infrastructure_test",
+    name = "test-app",
     srcs = [
         "tests/infrastructure_test.py"
     ],
