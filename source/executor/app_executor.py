@@ -3,7 +3,6 @@ from source.executor.application_submitter import ApplicationSubmitter
 from source.model.log_level import LogLevel
 
 import traceback
-import logging
 
 
 class AppExecutor:
@@ -54,14 +53,15 @@ class AppExecutor:
         self.__logger = submitter.logger
         return submitter
 
+    # noinspection PyBroadException
     def __run(self, application):
         try:
             self.__display_begin_message()
             self.__handle_pre_steps()
             application.visit_home_page()
             self.__handle_post_steps()
-        except Exception as ex:
-            logging.error(traceback.format_exc())
+        except Exception:
+            print(traceback.print_exc())
         finally:
             application.shutdown()
 
