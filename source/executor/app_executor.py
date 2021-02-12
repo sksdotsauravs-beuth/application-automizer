@@ -61,7 +61,7 @@ class AppExecutor:
             application.visit_home_page()
             self.__handle_post_steps()
         except Exception:
-            print(traceback.print_exc())
+            self.__logger.print_log_message(LogLevel.ERROR, traceback.print_exc())
         finally:
             application.shutdown()
 
