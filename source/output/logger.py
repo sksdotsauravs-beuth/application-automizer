@@ -13,6 +13,7 @@ class Logger:
 
     def __init__(self, log_level: LogLevel):
         self.__log_level = log_level
+        logging.basicConfig(level=logging.DEBUG)
 
     def print_log_message(self, log_level: LogLevel, message: str):
         """
@@ -22,4 +23,4 @@ class Logger:
 
         if self.__log_level.value >= log_level.value:
             logging.info(message)
-            #print(message.encode('cp1252', errors='ignore'))
+            # print(message.encode('cp1252', errors='ignore'))
