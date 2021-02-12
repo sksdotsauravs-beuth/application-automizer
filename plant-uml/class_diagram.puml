@@ -129,7 +129,7 @@ abstract class source.pages.Page {
 class source.pages.house_of_nations.HomePage implements source.pages.Page {
     -__configuration: Configuration
     -__driver: webdriver
-    +get_url() -> bool
+    +get_url() -> str
     +at() -> bool
 }
 
@@ -144,7 +144,7 @@ class source.executor.ApplicationSubmitter {
     +shutdown()
     +get_logger() -> Logger
     -__dry_run_enabled() -> bool
-    -__close_driver()
+    -__quit_driver()
 }
 
 source.output.Logger -- source.executor.ApplicationSubmitter : < owns
