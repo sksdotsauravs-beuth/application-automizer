@@ -20,4 +20,4 @@ class Logger:
         """
 
         if self.__log_level.value >= log_level.value:
-            print(str(message))
+            print(message.encode('cp1252', errors='ignore'))
