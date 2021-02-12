@@ -22,7 +22,7 @@ class DriverFactory:
         """
         if driver_info.get_driver_type() == "chrome":
             options = webdriver.ChromeOptions()
-            options.add_argument("--start-maximized")
+            options.add_argument("--headless")
             return webdriver.Chrome(
                 executable_path=os.path.join(
                     driver_info.get_driver_path(),
