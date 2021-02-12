@@ -22,7 +22,7 @@ class HomePage(Page):
         self.__configuration = configuration
         self.__driver = driver
 
-    def get_url(self) -> bool:
+    def get_url(self) -> str:
         """
             This method returns the home page url
         """

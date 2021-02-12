@@ -30,15 +30,17 @@ load("@pip//:requirements.bzl", "requirement")
 py_binary(
     name = "app",
     srcs = glob([
-        "*.py",
         "source/executor/*.py",
         "source/factory/*.py",
         "source/infrasturcture/*.py",
         "source/model/*.py",
         "source/output/*.py",
         "source/pages/**/*.py",
+        "source/pages/*.py",
         "source/utils/*.py",
-        "source/validator/*.py"
+        "source/validator/*.py",
+        "source/*.py",
+        "*.py",
     ]),
     data = glob([
         "resource/*.yml",
@@ -53,7 +55,7 @@ py_binary(
 )
 
 py_test(
-    name = "app-unit",
+    name = "infrastructure_test",
     srcs = [
         "tests/infrastructure_test.py"
     ],
