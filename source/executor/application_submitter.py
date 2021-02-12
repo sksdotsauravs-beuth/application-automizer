@@ -1,8 +1,9 @@
 import sys
-from source.factory import ConfigurationFactory, DriverFactory
-from source.model import LogLevel
-from source.output import Logger
-from source.pages.house_of_nations import HomePage
+from source.factory.configuration_factory import ConfigurationFactory
+from source.factory.driver_factory import DriverFactory
+from source.model.log_level import LogLevel
+from source.output.logger import Logger
+from source.pages.house_of_nations.home_page import HomePage
 
 
 class ApplicationSubmitter:

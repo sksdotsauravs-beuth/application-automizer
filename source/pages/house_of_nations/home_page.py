@@ -1,5 +1,5 @@
-from source.pages import Page
-from source.model import Configuration
+from source.pages.page import Page
+from source.model.configuration import Configuration
 from selenium import webdriver
 
 

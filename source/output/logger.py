@@ -1,4 +1,4 @@
-from source.model import LogLevel
+from source.model.log_level import LogLevel
 
 
 class Logger:

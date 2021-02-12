@@ -1,4 +1,5 @@
-from source.model import LogLevel, DriverInfo
+from source.model.log_level import LogLevel
+from source.model.driver_info import DriverInfo
 
 
 class ConfigurationInfo:

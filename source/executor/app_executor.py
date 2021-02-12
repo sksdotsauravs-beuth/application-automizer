@@ -1,6 +1,6 @@
 from app_info import AppInfo
 from source.executor.application_submitter import ApplicationSubmitter
-from source.model import LogLevel
+from source.model.log_level import LogLevel
 
 
 class AppExecutor:

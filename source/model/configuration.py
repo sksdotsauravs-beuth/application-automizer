@@ -1,7 +1,7 @@
-from source.model import DriverInfo
+from source.model.driver_info import DriverInfo
 from source.model.configuration_info import ConfigurationInfo
 from source.model.log_level import LogLevel
-from source.utils import FileUtils
+from source.utils.file_utils import FileUtils
 from source.validator.url_validator import UrlValidator
 
 

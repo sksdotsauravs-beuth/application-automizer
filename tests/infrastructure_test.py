@@ -4,7 +4,7 @@ import bs4
 import os
 import selenium
 
-from source.infrastructure import RequirementsReader
+from source.infrastructure.requirements_reader import RequirementsReader
 
 
 class InfrastructureTest(unittest.TestCase):

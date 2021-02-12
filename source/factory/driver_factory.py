@@ -1,6 +1,6 @@
 import os
 from selenium import webdriver
-from source.model import DriverInfo
+from source.model.driver_info import DriverInfo
 
 
 class DriverFactory:

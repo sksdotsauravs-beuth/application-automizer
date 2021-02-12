@@ -32,7 +32,7 @@ py_binary(
     srcs = glob([
         "source/executor/*.py",
         "source/factory/*.py",
-        "source/infrasturcture/*.py",
+        "source/infrastructure/*.py",
         "source/model/*.py",
         "source/output/*.py",
         "source/pages/**/*.py",
@@ -40,7 +40,7 @@ py_binary(
         "source/utils/*.py",
         "source/validator/*.py",
         "source/*.py",
-        "*.py",
+        "*.py"
     ]),
     data = glob([
         "resource/*.yml",
@@ -59,5 +59,5 @@ py_test(
     srcs = [
         "tests/infrastructure_test.py"
     ],
-    deps = [":app"],
+    deps = [":app"]
 )
