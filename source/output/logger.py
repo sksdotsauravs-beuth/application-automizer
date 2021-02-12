@@ -1,4 +1,5 @@
 from source.model.log_level import LogLevel
+import logging
 
 
 class Logger:
@@ -20,4 +21,5 @@ class Logger:
         """
 
         if self.__log_level.value >= log_level.value:
-            print(message.encode('cp1252', errors='ignore'))
+            logging.info(message)
+            #print(message.encode('cp1252', errors='ignore'))
