@@ -21,9 +21,12 @@ class DriverFactory:
             provided Configuration instance.
         """
         if driver_info.get_driver_type() == "chrome":
+            options = webdriver.ChromeOptions()
+            options.add_argument("--start-maximized")
             return webdriver.Chrome(
                 executable_path=os.path.join(
                     driver_info.get_driver_path(),
                     "chromedriver"
-                )
+                ),
+                chrome_options=options
             )
