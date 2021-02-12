@@ -61,7 +61,7 @@ class ApplicationSubmitter:
 
         if self.__driver:
             self.__logger.print_log_message(LogLevel.INFO, '>>> Shut down application...')
-            self.__close_driver()
+            self.__quit_driver()
 
         sys.exit()
 
@@ -79,5 +79,5 @@ class ApplicationSubmitter:
     def __dry_run_enabled(self):
         return self.__configuration.configuration_info.dry_run == "yes"
 
-    def __close_driver(self):
-        self.__driver.close()
+    def __quit_driver(self):
+        self.__driver.quit()
