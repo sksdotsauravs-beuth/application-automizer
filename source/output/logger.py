@@ -1,4 +1,3 @@
-#import logging
 from source.model.log_level import LogLevel
 
 
@@ -13,7 +12,6 @@ class Logger:
 
     def __init__(self, log_level: LogLevel):
         self.__log_level = log_level
-        #logging.basicConfig(level=logging.INFO)
 
     def print_log_message(self, log_level: LogLevel, message: str):
         """
