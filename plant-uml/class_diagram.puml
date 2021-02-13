@@ -136,6 +136,18 @@ class source.pages.house_of_nations.HomePage implements source.pages.Page {
     -__get_nav_menu() -> webelement
 }
 
+class source.pages.house_of_nations.EnglishPage implements source.pages.Page {
+    -__driver: webdriver
+    -__page_url: str
+    -__page_title: str
+    -__xpath_reservation_button: str
+    +get_url() -> str
+    +at() -> bool
+    +get_reservation_button() -> webelement
+    +get_xpath_reservation_button() -> str
+    -__set_attributes()
+}
+
 class source.executor.ApplicationSubmitter {
     -__yaml_file_path: str
     -__configuration: Configuration
@@ -145,6 +157,7 @@ class source.executor.ApplicationSubmitter {
     +set_dry_run_parameter_configuration()
     +go_to_home_page()
     +move_to_english_page_from_home()
+    +move_to_reservation_page_1_from_english()
     +shutdown()
     +get_logger() -> Logger
     +dry_run_enabled() -> bool

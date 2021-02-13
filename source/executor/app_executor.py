@@ -64,9 +64,10 @@ class AppExecutor:
                     LogLevel.INFO,
                     '>>> Executing dry-run...'
                 )
-            application.move_to_english_page_from_home(
-                application.go_to_home_page()
-            )
+
+            home = application.go_to_home_page()
+            english = application.move_to_english_page_from_home(home)
+            application.move_to_reservation_page_1_from_english(english)
 
             self.__handle_post_steps()
         except Exception:

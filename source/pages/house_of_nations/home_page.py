@@ -25,9 +25,11 @@ class HomePage(Page):
         self.__driver = driver
         self.__set_attributes()
 
+    # public
+
     def get_url(self) -> str:
         """
-            This method returns the home page url
+            This method returns the page url
         """
         return self.__configuration.configuration_info.hon_home_url
 
@@ -75,6 +77,8 @@ class HomePage(Page):
 
     url = property(get_url)
     xpath_english_sub_menu = property(get_xpath_english_sub_menu)
+
+    # private
 
     def __set_attributes(self):
         self.__page_title = "Studentenapartments Berlin, günstige Zimmer Studenten Azubis Berlin, Zimmer mieten"

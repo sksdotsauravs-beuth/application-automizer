@@ -9,6 +9,7 @@ from source.factory.configuration_factory import ConfigurationFactory
 from source.factory.driver_factory import DriverFactory
 from source.model.log_level import LogLevel
 from source.output.logger import Logger
+from source.pages.house_of_nations.english_page import EnglishPage
 from source.pages.house_of_nations.home_page import HomePage
 
 
@@ -73,6 +74,11 @@ class ApplicationSubmitter:
             This method will emulate a browser session moving to english page
         """
 
+        self.__logger.print_log_message(
+            LogLevel.INFO,
+            '>>> Go to english version of home page...'
+        )
+
         # move cursor to language menu
         action = ActionChains(self.__driver)
         action.move_to_element(
@@ -89,6 +95,37 @@ class ApplicationSubmitter:
 
         # click on the language option
         homepage.get_english_sub_menu().click()
+
+        # wait until reservation button is clickable
+        english_page = EnglishPage(self.__driver)
+        wait.until(
+            ec.element_to_be_clickable(
+                (By.XPATH, english_page.get_xpath_reservation_button())
+            )
+        )
+
+        if english_page.at():
+            self.__logger.print_log_message(
+                LogLevel.INFO,
+                '>>> Currently at english version of home page...'
+            )
+        else:
+            raise RuntimeError(">>> Not at english version of home page...")
+
+        return english_page
+
+    def move_to_reservation_page_1_from_english(self, english_page: EnglishPage):
+        """
+            This method will emulate a browser session moving to reservation page 1
+        """
+
+        self.__logger.print_log_message(
+            LogLevel.INFO,
+            '>>> Go to reservation page-1...'
+        )
+
+        # click on the reservation button
+        english_page.get_reservation_button().click()
 
         # wait for 5 seconds
         time.sleep(5)
