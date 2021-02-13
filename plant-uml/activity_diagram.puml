@@ -20,8 +20,8 @@ if (ParameterValidator.is_valid()) then (yes)
   :new ApplicationSubmitter;
   :display_begin_message();
   :handle_pre_steps();
-  :visit_home_page();
-  :go_to_english_version();
+  :go_to_home_page();
+  :move_to_english_page_from_home();
   :go_to_application_page();
   if (dry_run_enabled()) then (yes)
   else (no)

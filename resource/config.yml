@@ -9,5 +9,3 @@ driver_path: "C:\\Users\\saurav\\Downloads"
 driver_type: "chrome"
 # set this property to house_of_nations current Home Page url
 hon_home_url: "https://www.house-of-nations.de/"
-# set this property to house_of_nations current Home Page title
-hon_home_title: "Studentenapartments Berlin, günstige Zimmer Studenten Azubis Berlin, Zimmer mieten"

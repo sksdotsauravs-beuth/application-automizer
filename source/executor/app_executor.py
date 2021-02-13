@@ -58,10 +58,22 @@ class AppExecutor:
         try:
             self.__display_begin_message()
             self.__handle_pre_steps()
-            application.visit_home_page()
+
+            if application.dry_run_enabled():
+                self.__logger.print_log_message(
+                    LogLevel.INFO,
+                    '>>> Executing dry-run...'
+                )
+            application.move_to_english_page_from_home(
+                application.go_to_home_page()
+            )
+
             self.__handle_post_steps()
         except Exception:
-            self.__logger.print_log_message(LogLevel.ERROR, traceback.print_exc())
+            self.__logger.print_log_message(
+                LogLevel.ERROR,
+                traceback.print_exc()
+            )
         finally:
             application.shutdown()
 
@@ -114,3 +126,4 @@ class AppExecutor:
     @staticmethod
     def __get_artwork() -> str:
         return AppInfo.get_text_logo() + " v" + AppInfo.get_version() + "\n"
+

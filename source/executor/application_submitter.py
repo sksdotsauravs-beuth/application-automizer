@@ -1,4 +1,10 @@
 import sys
+import time
+
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
 from source.factory.configuration_factory import ConfigurationFactory
 from source.factory.driver_factory import DriverFactory
 from source.model.log_level import LogLevel
@@ -41,18 +47,51 @@ class ApplicationSubmitter:
 
         self.__configuration.configuration_info.dry_run = "yes"
 
-    def visit_home_page(self):
+    def go_to_home_page(self) -> HomePage:
         """
             This method will emulate a browser session to visit home page
         """
 
         homepage = HomePage(self.__configuration, self.__driver)
-        if self.__dry_run_enabled():
-            self.__logger.print_log_message(LogLevel.INFO, '>>> Executing dry-run...')
-        self.__logger.print_log_message(LogLevel.INFO, '>>> Go to home page...')
-        self.__driver.get(homepage.url)
+        self.__logger.print_log_message(
+            LogLevel.INFO,
+            '>>> Go to home page...'
+        )
+        self.__driver.get(homepage.get_url())
         if homepage.at():
-            self.__logger.print_log_message(LogLevel.INFO, '>>> Currently at home page...')
+            self.__logger.print_log_message(
+                LogLevel.INFO,
+                '>>> Currently at home page...'
+            )
+        else:
+            raise RuntimeError(">>> Not at home page...")
+
+        return homepage
+
+    def move_to_english_page_from_home(self, homepage: HomePage):
+        """
+            This method will emulate a browser session moving to english page
+        """
+
+        # move cursor to language menu
+        action = ActionChains(self.__driver)
+        action.move_to_element(
+            homepage.get_language_menu()
+        ).perform()
+
+        # wait until english option is visible on hover
+        wait = WebDriverWait(self.__driver, 5)
+        wait.until(
+            ec.element_to_be_clickable(
+                (By.XPATH, homepage.get_xpath_english_sub_menu())
+            )
+        )
+
+        # click on the language option
+        homepage.get_english_sub_menu().click()
+
+        # wait for 5 seconds
+        time.sleep(5)
 
     def shutdown(self):
         """
@@ -74,10 +113,14 @@ class ApplicationSubmitter:
 
     logger = property(get_logger)
 
-    # private
+    def dry_run_enabled(self) -> bool:
+        """
+            This method will return if dry run option is active or not
+        """
 
-    def __dry_run_enabled(self):
         return self.__configuration.configuration_info.dry_run == "yes"
+
+    # private
 
     def __quit_driver(self):
         self.__driver.quit()

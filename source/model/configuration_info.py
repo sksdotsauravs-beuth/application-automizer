@@ -19,7 +19,6 @@ class ConfigurationInfo:
         self.__driver_path = None
         self.__driver_info = None
         self.__hon_home_url = None
-        self.__hon_home_title = None
 
     def get_log_level(self) -> LogLevel:
         """
@@ -104,24 +103,9 @@ class ConfigurationInfo:
 
         self.__hon_home_url = hon_home_url
 
-    def get_hon_home_title(self) -> str:
-        """
-            This method will return the hon_home_title value.
-        """
-
-        return self.__hon_home_title
-
-    def set_hon_home_title(self, hon_home_title: str):
-        """
-            This method will set the hon_home_title value.
-        """
-
-        self.__hon_home_title = hon_home_title
-
     log_level = property(get_log_level, set_log_level)
     dry_run = property(get_dry_run, set_dry_run)
     driver_path = property(get_driver_path, set_driver_path)
     driver_type = property(get_driver_type, set_driver_type)
     driver_info = property(get_driver_info, set_driver_info)
     hon_home_url = property(get_hon_home_url, set_hon_home_url)
-    hon_home_title = property(get_hon_home_title, set_hon_home_title)

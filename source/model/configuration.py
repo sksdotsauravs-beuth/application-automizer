@@ -39,7 +39,6 @@ class Configuration:
             configuration_info.driver_type
         )
         self.__init_hon_home_url(configuration_info.hon_home_url)
-        self.__init_hon_home_title(configuration_info.hon_home_title)
 
     def __init_log_level(self, log_level: LogLevel):
         """
@@ -91,13 +90,3 @@ class Configuration:
             self.__configuration_info.hon_home_url = hon_home_url
         else:
             raise ValueError("invalid value for hon_home_url...")
-
-    def __init_hon_home_title(self, hon_home_title: str):
-        """
-            This method will validate and set the hon_home_title value.
-        """
-
-        if hon_home_title:
-            self.__configuration_info.hon_home_title = hon_home_title
-        else:
-            raise ValueError("invalid value for hon_home_title...")

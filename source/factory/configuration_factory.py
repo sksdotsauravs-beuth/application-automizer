@@ -18,8 +18,6 @@ class ConfigurationFactory:
             - selenium driver type,
             - selenium driver path,
             - page urls
-            - page elements xpath
-            - form values
 
         All methods are static.
     """
@@ -79,7 +77,6 @@ class ConfigurationFactory:
         driver_path = ConfigurationFactory.__get_driver_path_from_yml_file(yaml_content)
         driver_type = ConfigurationFactory.__get_driver_type_from_yml_file(yaml_content)
         hon_home_url = ConfigurationFactory.__get_hon_home_url_from_yml_file(yaml_content)
-        hon_home_title = ConfigurationFactory.__get_hon_home_title_from_yml_file(yaml_content)
 
         configuration_info = ConfigurationInfo()
         configuration_info.log_level = log_level
@@ -87,7 +84,6 @@ class ConfigurationFactory:
         configuration_info.driver_path = driver_path
         configuration_info.driver_type = driver_type
         configuration_info.hon_home_url = hon_home_url
-        configuration_info.hon_home_title = hon_home_title
 
         return Configuration(configuration_info)
 
@@ -175,21 +171,6 @@ class ConfigurationFactory:
             print(ConfigurationFactory.__get_key_missing_error_message(exc))
 
         return hon_home_url
-
-    @staticmethod
-    def __get_hon_home_title_from_yml_file(yaml_content: dict) -> str:
-        """
-            This method will fetch the hon_home_title value from a .yml file
-        """
-
-        hon_home_title = None
-
-        try:
-            hon_home_title = yaml_content['hon_home_title']
-        except KeyError as exc:
-            print(ConfigurationFactory.__get_key_missing_error_message(exc))
-
-        return hon_home_title
 
     @staticmethod
     def __get_key_missing_error_message(exc: KeyError) -> str:
