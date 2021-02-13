@@ -124,6 +124,12 @@ class ApplicationSubmitter:
             '>>> Go to reservation page-1...'
         )
 
+        # move cursor to reservation button
+        action = ActionChains(self.__driver)
+        action.move_to_element(
+            english_page.get_reservation_button()
+        ).perform()
+
         # click on the reservation button
         english_page.get_reservation_button().click()
 
