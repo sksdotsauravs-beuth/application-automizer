@@ -4,6 +4,7 @@
 * [00. About Application](#about-application)
 * [01. UML](#uml)
 * [02. DDD](#ddd)
+* [03. Metrics](#metrics)
 
 ### <a name="about-application"></a>00. About Application
 
@@ -129,7 +130,10 @@ website. This is also a core domain and specific to requirements of this particu
 ![alt Strategic Domain Design](images/strategic_domain_design.svg) 
 
 
-### Metrics (Code Quality)
+### <a name="metrics"></a>03. Metrics
+
+I have used SonarCloud and SonarLint plugin in my IDE to analyze and generate metrics of my project to get insights of 
+code quality.
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=sksdotsauravs-beuth_application-automizer)
 
