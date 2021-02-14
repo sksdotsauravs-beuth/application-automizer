@@ -7,9 +7,9 @@ A simple command line application that automates the online reservation of avail
 ### 01. UML
 The Unified Modeling Language is a set of notation elements that can be used to develop models for software systems. 
 This concerns the analysis, design and in general the presentation and documentation of the software elements or the 
-software behavior. I have used [PlantUML](https://plantuml.com/) to design the UML diagrams of my project. PlantUML uses 
-simple and intuitive language to design the diagrams. The sources are are stored in *.puml* files which I continue to 
-update as I make changes in the project to reflect visually in diagrams. 
+software behavior. I have used [PlantUML](https://plantuml.com/) to design the UML diagrams of my project. PlantUML 
+uses simple and intuitive language to design the diagrams. The sources are are stored in *.puml* files which I 
+continue to update as I make changes in the project to reflect visually in diagrams. 
 
 **Use Case Diagram**
 
