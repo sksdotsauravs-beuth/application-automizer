@@ -4,6 +4,12 @@ A simple command line application that automates the online reservation of avail
 
 ![alt Application Artwork](images/aa-artwork.png)
 
+Help can be found about how to use the tool using:
+```PowerShell
+python app.py --help
+```
+![alt Application Artwork](images/output-help-command.png)
+
 ### 01. UML
 The Unified Modeling Language is a set of notation elements that can be used to develop models for software systems. 
 This concerns the analysis, design and in general the presentation and documentation of the software elements or the 
