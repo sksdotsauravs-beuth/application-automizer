@@ -4,16 +4,33 @@ A simple command line application that automates the online reservation of avail
 
 ![alt Application Artwork](images/aa-artwork.png)
 
-### UML
-*Use Case Diagram*
+### 01. UML
+The Unified Modeling Language is a set of notation elements that can be used to develop models for software systems. \
+This concerns the analysis, design and in general the presentation and documentation of the software elements or the \
+software behavior. I have used [PlantUML](https://plantuml.com/) to design the UML diagrams of my project. PlantUML uses simple and intuitive \
+language to design the diagrams. The sources are are stored in *.puml* files which I continue to update as I make changes \
+in the project to reflect visually in diagrams. 
+
+**Use Case Diagram**
+
+Use Case Diagram presents the actors and their cases of application. I have depicted my project's use cases marking \
+also the actors in my program. The source can be found in [plant-uml/use_case_diagram.puml](plant-uml/use_case_diagram.puml). 
 
 ![alt Use Case Diagram](images/use_case_diagram.svg)
 
-*Activity Diagram*
+**Activity Diagram**
+
+Activity Diagram shows how the program works by using actions, transitions and branches. In this diagram I have tried \
+to visualize the total actions flow of my program with important actions and the branches. The source can be found in \
+[plant-uml/activity_diagram.puml](plant-uml/activity_diagram.puml).
 
 ![alt Activity Diagram](images/activity_diagram.svg)
 
-*Class Diagram*
+**Class Diagram**
+
+Class Diagram represents the classes of the respective programming language and their relationships. All the fields and \
+functions that I defined in the classes for the project, the relationships, visibility and package structure can be \
+visualized through this diagram. The source can be found in [plant-uml/class_diagram.puml](plant-uml/class_diagram.puml).
 
 ![alt Class Diagram](images/class_diagram.svg)
 
