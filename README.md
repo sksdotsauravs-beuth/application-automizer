@@ -5,6 +5,13 @@
 * [01. UML](#uml)
 * [02. DDD](#ddd)
 * [03. Metrics](#metrics)
+* [04. Clean Code Development](#clean-code-development)
+* [05. Build Management](#build-management)
+* [06. Unit-Tests](#unit-tests)
+* [07. Continuous Delivery](#continuous-delivery)
+* [08. IDE](#ide)
+* [09. DSL](#dsl)
+* [10. Functional Programming](#functional-programming)
 
 ### <a name="about-application"></a>00. About Application
 
@@ -138,4 +145,25 @@ code quality.
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=sksdotsauravs-beuth_application-automizer)
 
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=sksdotsauravs-beuth_application-automizer&metric=bugs)](https://sonarcloud.io/dashboard?id=sksdotsauravs-beuth_application-automizer) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=sksdotsauravs-beuth_application-automizer&metric=code_smells)](https://sonarcloud.io/dashboard?id=sksdotsauravs-beuth_application-automizer) [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=sksdotsauravs-beuth_application-automizer&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=sksdotsauravs-beuth_application-automizer) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sksdotsauravs-beuth_application-automizer&metric=alert_status)](https://sonarcloud.io/dashboard?id=sksdotsauravs-beuth_application-automizer)
+
+### <a name="clean-code-development"></a>04. Clean Code Development
+
+
+### <a name="build-management"></a>05. Build Management
+
+
+### <a name="unit-tests"></a>06. Unit-Tests
+
+
+### <a name="continuous-delivery"></a>07. Continuous Delivery
+
+
+### <a name="ide"></a>08. IDE
+
+
+### <a name="dsl"></a>09. DSL
+
+
+### <a name="functional-programming"></a>10. Functional Programming
+
 
