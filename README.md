@@ -4,7 +4,7 @@ A simple command line application that automates the online reservation of avail
 
 ![alt Application Artwork](images/aa-artwork.png)
 
-Help can be found about how to use the tool using:
+Help can be found about how to use the tool using (after going to project root directory in shell):
 ```PowerShell
 python app.py --help
 ```
