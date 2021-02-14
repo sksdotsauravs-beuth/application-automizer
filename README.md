@@ -1,4 +1,11 @@
 # application-automizer
+
+### Table of Contents
+* [00. About Application](#about-application)
+* [01. UML](#uml)
+
+### <a name="about-application"></a>00. About Application
+
 A simple command line application that automates the online reservation of available rooms/apartments in 
 [House of Nations](https://www.house-of-nations.de/) website. I have used *Python* to develop the project and the 
 required libraries are listed in [requirements.txt](requirements.txt). I have used selenium chrome webdriver for 
@@ -67,7 +74,7 @@ step1.end_year: "2022"
 step1.room_choices: "EZ,EA"
 ```   
 
-### 01. UML
+### <a name="uml"></a>01. UML
 The Unified Modeling Language is a set of notation elements that can be used to develop models for software systems. 
 This concerns the analysis, design and in general the presentation and documentation of the software elements or the 
 software behavior. I have used [PlantUML](https://plantuml.com/) to design the UML diagrams of my project. PlantUML 
