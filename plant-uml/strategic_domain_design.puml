@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+(Pages) as (PG) << core >>
+(Factories) as (FT) << supporting >>
+(Executors) as (EX) << core >>
+(Configuration Management) as (CM) << core >>
+(Validators) as (VL) << supporting >>
+(Utils) as (UT) << generic >>
+
+(VL) -down-> (UT)
+(CM) -right-> (UT)
+(EX) -right-> (VL)
+(EX) -down-> (CM)
+(EX) -left-> (FT)
+(PG) -right-> (CM)
+(EX) -down-> (PG)
+(FT) -down-> (CM)
+
+@enduml

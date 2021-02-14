@@ -3,6 +3,7 @@
 ### Table of Contents
 * [00. About Application](#about-application)
 * [01. UML](#uml)
+* [02. DDD](#ddd)
 
 ### <a name="about-application"></a>00. About Application
 
@@ -103,6 +104,30 @@ and functions that I defined in the classes for the project, the relationships, 
 be visualized through this diagram. The source can be found in [plant-uml/class_diagram.puml](plant-uml/class_diagram.puml).
 
 ![alt Class Diagram](images/class_diagram.svg)
+
+### <a name="ddd"></a>02. DDD
+
+#### Strategic Domain Design
+
+1. **Configuration Management** to manage the configuration required to run the application. Reading config.yml file, 
+parsing and validating, creating the value object to be passed around where this is required are some tasks in this 
+strategic part.
+
+2. **Executors** a core domain which is used to maintain the execution flow of the application. Command 
+Line arguments parsing, creating main app instance, managing webdriver states and main actions in one place can be seen 
+as parts of this domain.
+
+3. **Pages** for managing page properties, components and functionalities of different webpages of the House of Nations 
+website. This is also a core domain and specific to requirements of this particular application.
+
+4. **Factories** for creating instance of configuration and webdriver. This is supporting domain.
+
+5. **Validators** for validating inputs. This also falls in supporting domain.
+
+6. **Utils** provides utility functions. This is a generic domain.
+
+![alt Strategic Domain Design](images/strategic_domain_design.svg) 
+
 
 ### Metrics (Code Quality)
 
