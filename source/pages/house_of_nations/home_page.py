@@ -31,12 +31,14 @@ class HomePage(Page):
         """
             This method returns the page url
         """
+
         return self.__configuration.configuration_info.hon_home_url
 
     def at(self) -> bool:
         """
             This method verifies if the browser is currently at page location
         """
+
         return self.__driver.title == self.__page_title
 
     def get_language_menu(self) -> webelement:
@@ -73,6 +75,7 @@ class HomePage(Page):
         """
             This method returns the english sub menu xpath
         """
+
         return self.__xpath_english_sub_menu
 
     url = property(get_url)

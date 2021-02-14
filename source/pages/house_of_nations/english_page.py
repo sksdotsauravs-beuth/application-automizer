@@ -29,12 +29,14 @@ class EnglishPage(Page):
         """
             This method returns the page url
         """
+
         return self.__page_url
 
     def at(self) -> bool:
         """
             This method verifies if the browser is currently at page location
         """
+
         return self.__driver.title == self.__page_title
 
     def get_reservation_button(self) -> webelement:
@@ -50,6 +52,7 @@ class EnglishPage(Page):
         """
             This method returns the reservation button xpath
         """
+
         return self.__xpath_reservation_button
 
     url = property(get_url)

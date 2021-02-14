@@ -65,9 +65,13 @@ class AppExecutor:
                     '>>> Executing dry-run...'
                 )
 
-            home = application.go_to_home_page()
-            english = application.move_to_english_page_from_home(home)
-            application.move_to_reservation_page_1_from_english(english)
+            home_page = application.go_to_home_page()
+            english_page = application \
+                .move_to_english_page_from_home(home_page)
+            reservation_page1 = application \
+                .move_to_reservation_step1_from_english(english_page)
+            application \
+                .fill_step1_information_and_move_to_step_2(reservation_page1)
 
             self.__handle_post_steps()
         except Exception:
@@ -127,4 +131,3 @@ class AppExecutor:
     @staticmethod
     def __get_artwork() -> str:
         return AppInfo.get_text_logo() + " v" + AppInfo.get_version() + "\n"
-

@@ -22,10 +22,12 @@ if (ParameterValidator.is_valid()) then (yes)
   :handle_pre_steps();
   :go_to_home_page();
   :move_to_english_page_from_home();
-  :go_to_application_page();
+  :move_to_reservation_step1_from_english();
+  :fill_step1_information_and_move_to_step_2();
+  :fill_step2_information_and_move_to_step_3();
   if (dry_run_enabled()) then (yes)
   else (no)
-    :submit_search_form();
+    :fill_step3_information_and_move_to_step_4();
   endif
   :handle_post_steps();
   #palegreen:success;

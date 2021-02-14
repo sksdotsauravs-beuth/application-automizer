@@ -11,13 +11,14 @@ from source.model.log_level import LogLevel
 from source.output.logger import Logger
 from source.pages.house_of_nations.english_page import EnglishPage
 from source.pages.house_of_nations.home_page import HomePage
+from source.pages.house_of_nations.reservation_page1 import ReservationPage1
 
 
 class ApplicationSubmitter:
     """
         - author:             Saurav Kumar Saha
         - created:            2021-02-05
-        - changed:            2021-02-07
+        - changed:            2021-02-13
 
         This class holds the actual program functionality.
     """
@@ -114,14 +115,14 @@ class ApplicationSubmitter:
 
         return english_page
 
-    def move_to_reservation_page_1_from_english(self, english_page: EnglishPage):
+    def move_to_reservation_step1_from_english(self, english_page: EnglishPage):
         """
-            This method will emulate a browser session moving to reservation page 1
+            This method will emulate a browser session moving to reservation step-1
         """
 
         self.__logger.print_log_message(
             LogLevel.INFO,
-            '>>> Go to reservation page-1...'
+            '>>> Go to reservation step-1...'
         )
 
         # move cursor to reservation button
@@ -132,6 +133,53 @@ class ApplicationSubmitter:
 
         # click on the reservation button
         english_page.get_reservation_button().click()
+
+        # switch to reservation page tab
+        self.__driver.switch_to_window(self.__driver.window_handles[1])
+
+        reservation_page1 = ReservationPage1(self.__configuration, self.__driver)
+
+        # wait until next button is visible
+        wait = WebDriverWait(self.__driver, 5)
+        wait.until(
+            ec.visibility_of_element_located(
+                (By.XPATH, reservation_page1.get_xpath_next_button())
+            )
+        )
+
+        if reservation_page1.at():
+            self.__logger.print_log_message(
+                LogLevel.INFO,
+                '>>> Currently at reservation step-1...'
+            )
+        else:
+            raise RuntimeError(">>> Not at reservation page-1...")
+
+        return reservation_page1
+
+    def fill_step1_information_and_move_to_step_2(self, reservation_page1: ReservationPage1):
+        self.__logger.print_log_message(
+            LogLevel.INFO,
+            '>>> Fill up step-1 information...'
+        )
+
+        # fill all the information
+        reservation_page1.fill_start_month_tag()
+        reservation_page1.fill_start_month()
+        reservation_page1.fill_start_year()
+        reservation_page1.fill_end_month_tag()
+        reservation_page1.fill_end_month()
+        reservation_page1.fill_end_year()
+        reservation_page1.fill_room_choices()
+
+        # move cursor to next button
+        action = ActionChains(self.__driver)
+        action.move_to_element(
+            reservation_page1.get_next_button()
+        ).perform()
+
+        # submit by clicking next button
+        reservation_page1.get_next_button().click()
 
         # wait for 5 seconds
         time.sleep(5)

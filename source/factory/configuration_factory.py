@@ -8,7 +8,7 @@ class ConfigurationFactory:
     """
         - author:             Saurav Kumar Saha
         - created:            2021-02-06
-        - changed:            2021-02-07
+        - changed:            2021-02-13
 
         This class represents a configuration .yml file. Important settings
         can be defined inside this file like:
@@ -72,11 +72,18 @@ class ConfigurationFactory:
             constructor.
         """
 
-        log_level = ConfigurationFactory.__get_log_level_from_yml_file(yaml_content)
-        dry_run = ConfigurationFactory.__get_dry_run_from_yml_file(yaml_content)
-        driver_path = ConfigurationFactory.__get_driver_path_from_yml_file(yaml_content)
-        driver_type = ConfigurationFactory.__get_driver_type_from_yml_file(yaml_content)
-        hon_home_url = ConfigurationFactory.__get_hon_home_url_from_yml_file(yaml_content)
+        log_level = ConfigurationFactory.__get_log_level(yaml_content)
+        dry_run = ConfigurationFactory.__get_dry_run(yaml_content)
+        driver_path = ConfigurationFactory.__get_driver_path(yaml_content)
+        driver_type = ConfigurationFactory.__get_driver_type(yaml_content)
+        hon_home_url = ConfigurationFactory.__get_hon_home_url(yaml_content)
+        start_month_tag = ConfigurationFactory.__get_step1_start_month_tag(yaml_content)
+        start_month = ConfigurationFactory.__get_step1_start_month(yaml_content)
+        start_year = ConfigurationFactory.__get_step1_start_year(yaml_content)
+        end_month_tag = ConfigurationFactory.__get_step1_end_month_tag(yaml_content)
+        end_month = ConfigurationFactory.__get_step1_end_month(yaml_content)
+        end_year = ConfigurationFactory.__get_step1_end_year(yaml_content)
+        room_choices = ConfigurationFactory.__get_step1_room_choices(yaml_content)
 
         configuration_info = ConfigurationInfo()
         configuration_info.log_level = log_level
@@ -84,11 +91,18 @@ class ConfigurationFactory:
         configuration_info.driver_path = driver_path
         configuration_info.driver_type = driver_type
         configuration_info.hon_home_url = hon_home_url
+        configuration_info.start_month_tag = start_month_tag
+        configuration_info.start_month = start_month
+        configuration_info.start_year = start_year
+        configuration_info.end_month_tag = end_month_tag
+        configuration_info.end_month = end_month
+        configuration_info.end_year = end_year
+        configuration_info.room_choices = room_choices
 
         return Configuration(configuration_info)
 
     @staticmethod
-    def __get_log_level_from_yml_file(yaml_content: dict) -> LogLevel:
+    def __get_log_level(yaml_content: dict) -> LogLevel:
         """
             This method will fetch the log level value from a .yml file
         """
@@ -117,7 +131,7 @@ class ConfigurationFactory:
         return log_level
 
     @staticmethod
-    def __get_dry_run_from_yml_file(yaml_content: dict) -> str:
+    def __get_dry_run(yaml_content: dict) -> str:
         """
             This method will fetch the dry run value from a .yml file
         """
@@ -132,7 +146,7 @@ class ConfigurationFactory:
         return dry_run
 
     @staticmethod
-    def __get_driver_path_from_yml_file(yaml_content: dict) -> str:
+    def __get_driver_path(yaml_content: dict) -> str:
         """
             This method will fetch the driver_path value from a .yml file
         """
@@ -145,7 +159,7 @@ class ConfigurationFactory:
         return driver_path
 
     @staticmethod
-    def __get_driver_type_from_yml_file(yaml_content: dict) -> str:
+    def __get_driver_type(yaml_content: dict) -> str:
         """
             This method will fetch the driver_type value from a .yml file
         """
@@ -158,7 +172,7 @@ class ConfigurationFactory:
         return driver_type
 
     @staticmethod
-    def __get_hon_home_url_from_yml_file(yaml_content: dict) -> str:
+    def __get_hon_home_url(yaml_content: dict) -> str:
         """
             This method will fetch the hon_home_url value from a .yml file
         """
@@ -171,6 +185,118 @@ class ConfigurationFactory:
             print(ConfigurationFactory.__get_key_missing_error_message(exc))
 
         return hon_home_url
+
+    @staticmethod
+    def __get_step1_start_month_tag(yaml_content: dict) -> str:
+        """
+            This method will fetch the step1.start_month_tag
+            value from a .yml file
+        """
+
+        start_month_tag = None
+
+        try:
+            start_month_tag = yaml_content['step1.start_month_tag']
+        except KeyError as exc:
+            print(ConfigurationFactory.__get_key_missing_error_message(exc))
+
+        return start_month_tag
+
+    @staticmethod
+    def __get_step1_start_month(yaml_content: dict) -> str:
+        """
+            This method will fetch the step1.start_month
+            value from a .yml file
+        """
+
+        start_month = None
+
+        try:
+            start_month = yaml_content['step1.start_month']
+        except KeyError as exc:
+            print(ConfigurationFactory.__get_key_missing_error_message(exc))
+
+        return start_month
+
+    @staticmethod
+    def __get_step1_start_year(yaml_content: dict) -> str:
+        """
+            This method will fetch the step1.start_year
+            value from a .yml file
+        """
+
+        start_year = None
+
+        try:
+            start_year = yaml_content['step1.start_year']
+        except KeyError as exc:
+            print(ConfigurationFactory.__get_key_missing_error_message(exc))
+
+        return start_year
+
+    @staticmethod
+    def __get_step1_end_month_tag(yaml_content: dict) -> str:
+        """
+            This method will fetch the step1.end_month_tag
+            value from a .yml file
+        """
+
+        end_month_tag = None
+
+        try:
+            end_month_tag = yaml_content['step1.end_month_tag']
+        except KeyError as exc:
+            print(ConfigurationFactory.__get_key_missing_error_message(exc))
+
+        return end_month_tag
+
+    @staticmethod
+    def __get_step1_end_month(yaml_content: dict) -> str:
+        """
+            This method will fetch the step1.end_month
+            value from a .yml file
+        """
+
+        end_month = None
+
+        try:
+            end_month = yaml_content['step1.end_month']
+        except KeyError as exc:
+            print(ConfigurationFactory.__get_key_missing_error_message(exc))
+
+        return end_month
+
+    @staticmethod
+    def __get_step1_end_year(yaml_content: dict) -> str:
+        """
+            This method will fetch the step1.end_year
+            value from a .yml file
+        """
+
+        end_year = None
+
+        try:
+            end_year = yaml_content['step1.end_year']
+        except KeyError as exc:
+            print(ConfigurationFactory.__get_key_missing_error_message(exc))
+
+        return end_year
+
+    @staticmethod
+    def __get_step1_room_choices(yaml_content: dict) -> str:
+        """
+            This method will fetch the step1.room_choices
+            value from a .yml file
+        """
+
+        room_choices = None
+
+        try:
+            room_choices = yaml_content['step1.room_choices']
+        except KeyError as exc:
+            print(ConfigurationFactory.__get_key_missing_error_message(exc))
+
+        return room_choices
 
     @staticmethod
     def __get_key_missing_error_message(exc: KeyError) -> str:

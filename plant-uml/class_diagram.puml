@@ -24,9 +24,24 @@ class source.model.DriverInfo {
     -__driver_path: str
     -__driver_type: str
     +get_driver_path() -> str
-    +set_driver_path(driver_path: str)
     +get_driver_type() -> str
-    +set_driver_type(driver_type: str)
+}
+
+class source.model.ReservationStep1Info {
+    -__start_month_tag: str
+    -__start_month: str
+    -__start_year: str
+    -__end_month_tag: str
+    -__end_month: str
+    -__end_year: str
+    -__room_choices: str
+    +get_start_month_tag() -> str
+    +get_start_month() -> str
+    +get_start_year() -> str
+    +get_end_month_tag() -> str
+    +get_end_month() -> str
+    +get_end_year() -> str
+    +get_room_choices() -> list
 }
 
 
@@ -37,6 +52,14 @@ class source.model.ConfigurationInfo {
     -__driver_path: str
     -__driver_info: DriverInfo
     -__hon_home_url: str
+    -__start_month_tag: str
+    -__start_month: str
+    -__start_year: str
+    -__end_month_tag: str
+    -__end_month: str
+    -__end_year: str
+    -__room_choices: str
+    -__reservation_step1_info: ReservationStep1Info
 
     +get_log_level() -> LogLevel
     +set_log_level(log_level: LogLevel)
@@ -50,10 +73,26 @@ class source.model.ConfigurationInfo {
     +set_driver_info(driver_info: DriverInfo)
     +get_hon_home_url() -> str
     +set_hon_home_url(hon_home_url: str)
+    +get_start_month_tag() -> str
+    +set_start_month_tag(start_month_tag: str)
+    +get_start_month() -> str
+    +set_start_month(start_month: str)
+    +get_start_year() -> str
+    +set_start_year(start_year: str)
+    +get_end_month_tag() -> str
+    +set_end_month_tag(end_month_tag: str)
+    +get_end_month() -> str
+    +set_end_month(end_month: str)
+    +get_end_year() -> str
+    +set_end_year(end_year: str)
+    +get_room_choices() -> str
+    +set_room_choices(room_choices: str)
+    +get_reservation_step1_info() -> ReservationStep1Info
+    +set_reservation_step1_info(reservation_step1_info: ReservationStep1Info)
 }
 
-source.model.LogLevel -- source.model.ConfigurationInfo : < owns
 source.model.DriverInfo -- source.model.ConfigurationInfo : < owns
+source.model.ReservationStep1Info -- source.model.ConfigurationInfo : < owns
 
 class source.model.Configuration {
     -__configuration_info: ConfigurationInfo
@@ -61,8 +100,16 @@ class source.model.Configuration {
     -__validate(configuration_info: ConfigurationInfo)
     -__init_log_level(log_level: LogLevel)
     -__init_dry_run(dry_run: str)
-    -__init_driver_info(driver_path: str, driver_type: str)
+    -__init_driver_info(configuration_info: ConfigurationInfo)
     -__init_hon_home_url(hon_home_url: str)
+    -__init_reservation_step1_info(configuration_info: ConfigurationInfo)
+    -__validate_month_tag(month_tag: str, period: str)
+    -__validate_month_year(param: str, period: str, validator)
+    -__validate_room_choices(room_choices: str)
+    {static} -__month_validator(month: str) -> bool
+    {static} -__year_validator(year: str) -> bool
+    {static} -__room_choice_validator(room_choices: list) -> bool
+    {static} -__csv_to_list(csv_param: str) -> list
 }
 
 source.model.ConfigurationInfo -- source.model.Configuration : < owns
@@ -99,7 +146,6 @@ class source.infrastructure.RequirementsReader {
 
 class source.factory.DriverFactory {
     {static} +get_instance(driver_info: DriverInfo) -> webdriver
-
 }
 
 class source.factory.ConfigurationFactory {
@@ -107,12 +153,19 @@ class source.factory.ConfigurationFactory {
     {static} -__is_valid_yml_file(path_to_yml_file: str)) -> bool
     {static} -__open_yml_file(path_to_yml_file: str)
     {static} -__build_configuration_from_yml_file(yaml_content: dict) -> Configuration
-    {static} -__get_log_level_from_yml_file(yaml_content: dict) -> LogLevel
+    {static} -__get_log_level(yaml_content: dict) -> LogLevel
     {static} -__get_log_level_value(log_level_string: str) -> LogLevel
-    {static} -__get_dry_run_from_yml_file(yaml_content: dict) -> str
-    {static} -__get_driver_path_from_yml_file(yaml_content: dict) -> str
-    {static} -__get_driver_type_from_yml_file(yaml_content: dict) -> str
-    {static} -__get_hon_home_url_from_yml_file(yaml_content: dict) -> str
+    {static} -__get_dry_run(yaml_content: dict) -> str
+    {static} -__get_driver_path(yaml_content: dict) -> str
+    {static} -__get_driver_type(yaml_content: dict) -> str
+    {static} -__get_hon_home_url(yaml_content: dict) -> str
+    {static} -__get_step1_start_month_tag(yaml_content: dict) -> str
+    {static} -__get_step1_start_month(yaml_content: dict) -> str
+    {static} -__get_step1_start_year(yaml_content: dict) -> str
+    {static} -__get_step1_end_month_tag(yaml_content: dict) -> str
+    {static} -__get_step1_end_month(yaml_content: dict) -> str
+    {static} -__get_step1_end_year(yaml_content: dict) -> str
+    {static} -__get_step1_room_choices(yaml_content: dict) -> str
     {static} -__get_key_missing_error_message(exc: KeyError) -> str
 }
 
@@ -148,6 +201,50 @@ class source.pages.house_of_nations.EnglishPage implements source.pages.Page {
     -__set_attributes()
 }
 
+class source.pages.house_of_nations.ReservationPage1 implements source.pages.Page {
+    -__configuration: Configuration
+    -__driver: webdriver
+    -__xpath_step_1_div: str
+    -__xpath_next_button: str
+    -__xpath_start_month_tag: str
+    -__id_start_month: str
+    -__name_start_year: str
+    -__xpath_end_month_tag: str
+    -__xpath_end_month: str
+    -__xpath_end_year: str
+    -__page_title: str
+    -__xpath_room_choice_typ0: str
+    -__xpath_room_choice_typ1: str
+    -__xpath_room_choice_typ2: str
+    -__xpath_room_choice_typ3: str
+    -__xpath_room_choice_typ4: str
+    +get_url() -> str
+    +at() -> bool
+    +get_next_button() -> webelement
+    +get_xpath_next_button() -> str
+    +fill_start_month_tag()
+    +fill_start_month()
+    +fill_start_year()
+    +fill_end_month_tag()
+    +fill_end_month()
+    +fill_end_year()
+    +fill_room_choices()
+    -__set_attributes()
+    -__get_step_1_div() -> webelement
+    -__get_start_month_tag_select_element() -> webelement
+    -__get_start_month_select_element() -> webelement
+    -__get_start_year_select_element() -> webelement
+    -__get_end_month_tag_select_element() -> webelement
+    -__get_end_month_select_element() -> webelement
+    -__get_end_year_select_element() -> webelement
+    -__get_room_choice_typ0_checkbox() -> webelement
+    -__get_room_choice_typ1_checkbox() -> webelement
+    -__get_room_choice_typ2_checkbox() -> webelement
+    -__get_room_choice_typ3_checkbox() -> webelement
+    -__get_room_choice_typ4_checkbox() -> webelement
+    {static} -__find_element(by: str)
+}
+
 class source.executor.ApplicationSubmitter {
     -__yaml_file_path: str
     -__configuration: Configuration
@@ -157,7 +254,8 @@ class source.executor.ApplicationSubmitter {
     +set_dry_run_parameter_configuration()
     +go_to_home_page()
     +move_to_english_page_from_home()
-    +move_to_reservation_page_1_from_english()
+    +move_to_reservation_step1_from_english()
+    +fill_step1_information_and_move_to_step_2()
     +shutdown()
     +get_logger() -> Logger
     +dry_run_enabled() -> bool
@@ -183,7 +281,6 @@ class source.executor.AppExecutor {
     -__get_artwork() -> str
 }
 
-source.output.Logger -- source.executor.AppExecutor : < owns
 source.validator.ParameterValidator -- source.executor.AppExecutor : < owns
 
 @enduml
