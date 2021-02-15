@@ -1,17 +1,17 @@
 # application-automizer
 
 ### Table of Contents
-* [00. About Application](#about-application)
-* [01. UML](#uml)
-* [02. DDD](#ddd)
-* [03. Metrics](#metrics)
-* [04. Clean Code Development](#clean-code-development)
-* [05. Build Management](#build-management)
-* [06. Unit-Tests](#unit-tests)
-* [07. Continuous Delivery](#continuous-delivery)
-* [08. IDE](#ide)
-* [09. DSL](#dsl)
-* [10. Functional Programming](#functional-programming)
+*  [00. About Application](#about-application)
+*  [01. UML](#uml)
+*  [02. DDD](#ddd)
+*  [03. Metrics](#metrics)
+*  [04. Clean Code Development](#clean-code-development)
+*  [05. Build Management](#build-management)
+*  [06. Unit-Tests](#unit-tests)
+*  [07. Continuous Delivery](#continuous-delivery)
+*  [08. IDE](#ide)
+*  [09. DSL](#dsl)
+*  [10. Functional Programming](#functional-programming)
 
 ### <a name="about-application"></a>00. About Application
 
@@ -148,6 +148,88 @@ code quality.
 
 ### <a name="clean-code-development"></a>04. Clean Code Development
 
+The goal of clean code development is to develop sustainable code with good quality so that technical debts are minimal.
+
+1. **Comments**: Useful comments to describe the tasks of functions and classes throughout the project by using docstring.
+
+    [home_page.py](source/pages/house_of_nations/home_page.py)
+    ```Python
+    class HomePage(Page):
+        """
+            This class holds the information of home page, such as:
+            it's url and other page elements.
+        """
+    ```
+    ```Python
+        def at(self) -> bool:
+            """
+                This method verifies if the browser is currently at page location
+            """
+    
+            return self.__driver.title == self.__page_title
+    ```
+2. **Precise Naming**: Used self-explanatory and consistent naming for variables, functions, interfaces and classes.
+
+    [application_submitter.py](source/executor/application_submitter.py)
+    ```Python
+    class ApplicationSubmitter:
+        """
+            This class holds the actual program functionality.
+        """
+    ```    
+    ```Python
+        def __init__(self, yaml_file_path):
+            self.__yaml_file_path = yaml_file_path
+            self.__configuration = None
+            self.__logger = None
+            self.__driver = None
+    ```
+    ```Python
+        def set_dry_run_parameter_configuration(self):
+            """
+                This method will set the dry run parameter information inside configuration.
+            """
+    
+            self.__configuration.configuration_info.dry_run = "yes"
+    ```
+   
+3. **Single Responsibility Functions**: Tried to design and use functions in such a way so they have single tasks.
+
+    [home_page.py](source/pages/house_of_nations/home_page.py)
+    ```Python
+        def get_url(self) -> str:
+            """
+                This method returns the page url
+            """
+    
+            return self.__configuration.configuration_info.hon_home_url
+    ```
+
+4. **Exception Handling**: Used try-except-finally to avoid inconsistent application state.
+
+    [app_executor.py](source/executor/app_executor.py)
+    ```Python
+        def __run(self, application):
+            try:
+                self.__display_begin_message()
+                self.__handle_pre_steps()
+                ...
+                application.fill_step1_information_and_move_to_step_2(reservation_page1)
+                self.__handle_post_steps()
+            except Exception:
+                self.__logger.print_log_message(LogLevel.ERROR, traceback.print_exc())
+            finally:
+                application.shutdown()
+    ```
+5. **Positive Conditionals**: Used positive conditionals and avoided negative conditionals for better readability.
+
+    [configuration.py](source/model/configuration.py)
+    ```Python
+            if UrlValidator(hon_home_url).is_valid():
+                self.__configuration_info.hon_home_url = hon_home_url
+            else:
+                raise ValueError("invalid value for hon_home_url...")
+    ```
 
 ### <a name="build-management"></a>05. Build Management
 
