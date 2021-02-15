@@ -137,14 +137,16 @@ website. This is also a core domain and specific to requirements of this particu
 ![alt Strategic Domain Design](images/strategic_domain_design.svg) 
 
 
-### <a name="metrics"></a>03. Metrics
+### <a name="metrics"></a>03. Metrics ![alt SonarCloud](images/sonarcloud-logo.png) ![alt Codacy](images/codacy-logo.png)
 
 I have used SonarCloud and SonarLint plugin in my IDE to analyze and generate metrics of my project to get insights of 
 code quality.
 
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=sksdotsauravs-beuth_application-automizer)
-
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=sksdotsauravs-beuth_application-automizer&metric=bugs)](https://sonarcloud.io/dashboard?id=sksdotsauravs-beuth_application-automizer) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=sksdotsauravs-beuth_application-automizer&metric=code_smells)](https://sonarcloud.io/dashboard?id=sksdotsauravs-beuth_application-automizer) [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=sksdotsauravs-beuth_application-automizer&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=sksdotsauravs-beuth_application-automizer) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sksdotsauravs-beuth_application-automizer&metric=alert_status)](https://sonarcloud.io/dashboard?id=sksdotsauravs-beuth_application-automizer)
+
+I also checked with Codacy online to analyse the code quality.
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/eb97e716be52464c9cb387b523ff66e8)](https://app.codacy.com/gh/sksdotsauravs-beuth/application-automizer?utm_source=github.com&utm_medium=referral&utm_content=sksdotsauravs-beuth/application-automizer&utm_campaign=Badge_Grade)
 
 ### <a name="clean-code-development"></a>04. Clean Code Development
 
@@ -256,7 +258,7 @@ getter-setter functions.
 15. Indentation maintained to separate logical blocks and to increase readability.
 
 
-### <a name="build-management"></a>05. Build Management
+### <a name="build-management"></a>05. Build Management ![alt Bazel](images/bazel-logo.png)
 
 For build management I have used [**Bazel**](https://docs.bazel.build/versions/master/be/python.html). Bazel uses Starlark programming language. After installing bazel I 
 configured **2** essential files to build my project. 
@@ -351,7 +353,7 @@ environment and data. And a py_test() rule compiles a test which is a binary wra
 ### <a name="unit-tests"></a>06. Unit-Tests
 
 
-### <a name="continuous-delivery"></a>07. Continuous Delivery
+### <a name="continuous-delivery"></a>07. Continuous Delivery ![alt Jenkins](images/jenkins-logo.png)
 
 For continuous delivery I have used Jenkins pipeline job. Pipeline jobs can be enabled in Jenkins by installing the 
 Pipeline plugin. They use simple text scripts known as Pipeline DSL based on Groovy programming language. The pipeline 
@@ -481,7 +483,7 @@ pipeline {
 
 ![alt Jenkins Pipeline snapshot](images/jenkins-pipeline.png)
 
-### <a name="ide"></a>08. IDE
+### <a name="ide"></a>08. IDE ![alt PyCharm](images/pycharm-logo.png)
 
 
 ### <a name="dsl"></a>09. DSL
