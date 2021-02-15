@@ -258,6 +258,95 @@ getter-setter functions.
 
 ### <a name="build-management"></a>05. Build Management
 
+For build management I have used **Bazel**. Bazel uses Starlark programming language. After installing bazel I 
+configured **2** essential files to build my project. 
+
+1. In bazel realm the project root or where the source files reside is considered as workspace and this directory needs 
+to have a text file called **WORKSPACE**. This file can be empty or have rules to define the external dependencies that 
+are required to build the project. In my project I am using **pip_install** rule to configure the required dependencies 
+through requirements.txt file.
+
+    [WORKSPACE](WORKSPACE)
+    ```Starlark
+    load("@rules_python//python:pip.bzl", "pip_install")
+    pip_install(
+        # (Optional) You can provide a python_interpreter (path) or a python_interpreter_target (a Bazel target, that
+        # acts as an executable). The latter can be anything that could be used as Python interpreter. E.g.:
+        # 1. Python interpreter that you compile in the build file (as above in @python_interpreter).
+        # 2. Pre-compiled python interpreter included with http_archive
+        # 3. Wrapper script, like in the auto-detecting python toolchain.
+        python_interpreter = "C://Users//saurav//PycharmProjects//application-automizer//venv//Scripts//python",
+        
+        # Uses the default repository name "pip"
+        requirements = "//:requirements.txt",
+    )
+    ```
+2. The second file is **BUILD** file. The directory that contains this file is considered as a package. A package 
+includes all files in its directory, plus all subdirectories beneath it, except those which themselves contain a BUILD 
+file. In this build file I mainly configure two rules - **py_binary** and **py_test**. A **py_binary** is an executable 
+python program consisting of all the source code and data needed by the program at run-time with the correct initial 
+environment and data. And a py_test() rule compiles a test which is a binary wrapper around some test code.
+
+    [BUILD](BUILD)
+    ```Starlark
+    load("@rules_python//python:defs.bzl", "py_binary", "py_test")
+    load("@pip//:requirements.bzl", "requirement")
+    
+    py_binary(
+        name = "app",
+        srcs = glob([
+            "source/executor/*.py",
+            "source/factory/*.py",
+            "source/infrastructure/*.py",
+            "source/model/*.py",
+            "source/output/*.py",
+            "source/pages/**/*.py",
+            "source/pages/*.py",
+            "source/utils/*.py",
+            "source/validator/*.py",
+            "source/*.py",
+            "*.py"
+        ]),
+        data = glob([
+            "resource/*.yml",
+            "*.txt"
+        ]),
+        deps = [
+            requirement("beautifulsoup4"),
+            requirement("selenium"),
+            requirement("pyyaml"),
+            requirement("validators")
+        ]
+    )
+    
+    py_test(
+        name = "infrastructure_test",
+        srcs = [
+            "tests/infrastructure_test.py"
+        ],
+        deps = [":app"]
+    )
+    ```
+3. The important commands of bazel which I also use in my Jenkins pipeline are:
+
+    a. To clean the previous build files from project environment
+    ```PowerShell
+    bazel clean
+    ```
+    b. To build the project (app: py_binary name) 
+    ```PowerShell
+    bazel build app
+    ```
+    
+    c. To execute all the tests 
+    ```PowerShell
+    bazel test :*
+    ```
+    
+    d. To run the project 
+    ```PowerShell
+    bazel run app -- config.yml
+    ```
 
 ### <a name="unit-tests"></a>06. Unit-Tests
 
