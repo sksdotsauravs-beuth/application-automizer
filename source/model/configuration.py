@@ -91,7 +91,7 @@ class Configuration:
             This method will validate and set the hon_home_url value.
         """
 
-        if UrlValidator(hon_home_url):
+        if UrlValidator(hon_home_url).is_valid():
             self.__configuration_info.hon_home_url = hon_home_url
         else:
             raise ValueError("invalid value for hon_home_url...")

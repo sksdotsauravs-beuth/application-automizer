@@ -20,9 +20,7 @@ class UrlValidator:
             This method will check if the passed url is valid.
         """
 
-        return (
-            self.__is_valid_url()
-        )
+        return self.__is_valid_url()
 
     # private
 
