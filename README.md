@@ -142,6 +142,7 @@ website. This is also a core domain and specific to requirements of this particu
 I have used SonarCloud and SonarLint plugin in my IDE to analyze and generate metrics of my project to get insights of 
 code quality.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/eb97e716be52464c9cb387b523ff66e8)](https://app.codacy.com/gh/sksdotsauravs-beuth/application-automizer?utm_source=github.com&utm_medium=referral&utm_content=sksdotsauravs-beuth/application-automizer&utm_campaign=Badge_Grade)
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=sksdotsauravs-beuth_application-automizer)
 
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=sksdotsauravs-beuth_application-automizer&metric=bugs)](https://sonarcloud.io/dashboard?id=sksdotsauravs-beuth_application-automizer) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=sksdotsauravs-beuth_application-automizer&metric=code_smells)](https://sonarcloud.io/dashboard?id=sksdotsauravs-beuth_application-automizer) [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=sksdotsauravs-beuth_application-automizer&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=sksdotsauravs-beuth_application-automizer) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sksdotsauravs-beuth_application-automizer&metric=alert_status)](https://sonarcloud.io/dashboard?id=sksdotsauravs-beuth_application-automizer)
