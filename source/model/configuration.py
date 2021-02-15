@@ -194,16 +194,15 @@ class Configuration:
 
     @staticmethod
     def __year_validator(year: str) -> bool:
+        max_year_limit = 5
         current_year = datetime.now().year
-        return current_year <= int(year) <= (current_year + 5)
+        return current_year <= int(year) <= (current_year + max_year_limit)
 
     @staticmethod
     def __room_choice_validator(room_choices: list) -> bool:
         valid_room_choices = ["EZ", "EA", "EA2", "DA", "DAB"]
-        for choice in room_choices:
-            if choice not in valid_room_choices:
-                return False
-        return True
+        filtered = filter(lambda x: x in valid_room_choices, room_choices)
+        return True if sorted(filtered) == sorted(room_choices) else False
 
     @staticmethod
     def __csv_to_list(csv_param: str) -> list:

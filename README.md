@@ -18,7 +18,7 @@
 A simple command line application that automates the online reservation of available rooms/apartments in 
 [House of Nations](https://www.house-of-nations.de/) website. I have used *Python* to develop the project and the 
 required libraries are listed in [requirements.txt](requirements.txt). I have used selenium chrome webdriver for 
-my project and this is only the external dependency. The latest chrome driver can be found [here](https://chromedriver.chromium.org/downloads).
+my project and this is the only external dependency. The latest chrome driver can be found [here](https://chromedriver.chromium.org/downloads).
 
 ![alt Application Artwork](images/application-automizer-artwork.png)
 
@@ -543,5 +543,96 @@ different tasks. The commands and outputs are listed below:
     ```
 
 ### <a name="functional-programming"></a>10. Functional Programming
+I have used functional programming in different places of my project. Here I have listed 3 cases.
 
+1. To validate month and year parameters provided via config.yml
+
+    The **__month_validator()** and **__year_validator()** are two First-Class functions. The **__validate_month_year()** 
+    is a Higher-Order function that takes either of this two function as **validator** argument to validate the input. 
+    
+    [configuration.py](source/model/configuration.py)
+    
+    ```Python
+    def __month_validator(month: str) -> bool:
+        valid_months = [
+            "January", "February", "March",
+            "April", "May", "June",
+            "July", "August", "September",
+            "October", "November", "December"
+        ]
+        return month in valid_months
+    
+    
+    def __year_validator(year: str) -> bool:
+        max_year_limit = 5
+        current_year = datetime.now().year
+        return current_year <= int(year) <= (current_year + max_year_limit)
+    
+    
+    def __validate_month_year(self, param: str, period: str, validator):
+        param_type = "month" if validator.__name__.startswith("__month") else "year"
+        if validator(param):
+            if period == "start" and param_type == "month":
+                self.__configuration_info.start_month = param
+            elif period == "end" and param_type == "month":
+                self.__configuration_info.end_month = param
+            elif period == "start" and param_type == "year":
+                self.__configuration_info.start_year = param
+            elif period == "end" and param_type == "year":
+                self.__configuration_info.end_year = param
+        else:
+            raise ValueError(f"invalid value for {period}_{param_type}...")
+    
+    # use-case
+    self.__validate_month_year(
+        param=configuration_info.start_month,
+        period="start",
+        validator=Configuration.__month_validator
+    )
+    ```
+2. To find element in pages based on different tags.
+
+    The **__find_element()** is a Higher-Order function that uses one of the nested functions as return value.
+    
+    [reservation_page1.py](source/pages/house_of_nations/reservation_page1.py)
+
+    ```Python
+    def __find_element(by: str):
+        def find_element_by_xpath(driver: webdriver, element_xpath: str) -> webelement:
+            return driver.find_element_by_xpath(element_xpath)
+
+        def find_element_by_id(driver: webdriver, element_id: str) -> webelement:
+            return driver.find_element_by_id(element_id)
+
+        def find_element_by_name(driver: webdriver, element_name: str) -> webelement:
+            return driver.find_element_by_name(element_name)
+
+        if by == "xpath":
+            return find_element_by_xpath
+        elif by == "id":
+            return find_element_by_id
+        elif by == "name":
+            return find_element_by_name
+    
+    # use-case
+    def __get_start_month_tag_select_element(self) -> webelement:
+        xpath_finder = ReservationPage1.__find_element(by="xpath")
+        return xpath_finder(
+            driver=self.__driver,
+            element_xpath=self.__xpath_start_month_tag
+        )
+    ```
+
+3. To validate room choices.
+
+    The **__room_choice_validator()** uses lambda or anonymous function to filter valid choices.
+ 
+    [configuration.py](source/model/configuration.py)
+    
+    ```Python
+    def __room_choice_validator(room_choices: list) -> bool:
+        valid_room_choices = ["EZ", "EA", "EA2", "DA", "DAB"]
+        filtered = filter(lambda x: x in valid_room_choices, room_choices)
+        return True if sorted(filtered) == sorted(room_choices) else False
+    ```
 
