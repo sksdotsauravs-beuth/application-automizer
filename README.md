@@ -258,7 +258,7 @@ getter-setter functions.
 15. Indentation maintained to separate logical blocks and to increase readability.
 
 
-### <a name="build-management"></a>05. Build Management ![alt Bazel](images/bazel-logo.png)
+### <a name="build-management"></a>05. Build Management ![alt Bazel](images/logo-bazel.png)
 
 For build management I have used [**Bazel**](https://docs.bazel.build/versions/master/be/python.html). Bazel uses Starlark programming language. After installing bazel I 
 configured **2** essential files to build my project. 
