@@ -258,7 +258,7 @@ getter-setter functions.
 
 ### <a name="build-management"></a>05. Build Management
 
-For build management I have used **Bazel**. Bazel uses Starlark programming language. After installing bazel I 
+For build management I have used [**Bazel**](https://docs.bazel.build/versions/master/be/python.html). Bazel uses Starlark programming language. After installing bazel I 
 configured **2** essential files to build my project. 
 
 1. In bazel realm the project root or where the source files reside is considered as workspace and this directory needs 
