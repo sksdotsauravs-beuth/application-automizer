@@ -247,7 +247,7 @@ getter-setter functions.
 
 11. Used exceptions with specific information.
 
-12. Used single assertion per test.
+12. Maintained as less as possible code duplication.
 
 13. Used python convention for file, function and variable names in snake case and class names in camel case.
 
