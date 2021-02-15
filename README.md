@@ -150,6 +150,8 @@ code quality.
 
 The goal of clean code development is to develop sustainable code with good quality so that technical debts are minimal.
 
+*[1-5] with code snippets to show:*
+
 1. **Comments**: Useful comments to describe the tasks of functions and classes throughout the project by using docstring.
 
     [home_page.py](source/pages/house_of_nations/home_page.py)
@@ -230,6 +232,29 @@ The goal of clean code development is to develop sustainable code with good qual
             else:
                 raise ValueError("invalid value for hon_home_url...")
     ```
+
+6. Organised code in well structured packages, e.g. model, pages. factory etc.
+
+7. Used classes to encapsulate variables and functions, e.g. DriverInfo, ConfigurationInfo etc.
+
+8. Used interfaces to design shared functionality of classes, e.g. Page.
+
+9. Code abstraction maintained by declaring private and public variables and functions following python coding norms, 
+such __ (double underscore) prefix to mark private scope and using property to expose private variables via 
+getter-setter functions.
+
+10. Used static methods when appropriate - code is not using instance variable and not dependent on instance creation.
+
+11. Used exceptions with specific information.
+
+12. Used single assertion per test.
+
+13. Used python convention for file, function and variable names in snake case and class names in camel case.
+
+14. Maintained maximum 80 characters per line in code mostly.
+
+15. Indentation maintained to separate logical blocks and to increase readability.
+
 
 ### <a name="build-management"></a>05. Build Management
 
