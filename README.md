@@ -355,7 +355,7 @@ environment and data. And a py_test() rule compiles a test which is a binary wra
 
 ### <a name="continuous-delivery"></a>07. Continuous Delivery ![alt Jenkins](images/jenkins-logo.png)
 
-For continuous delivery I have used Jenkins pipeline job. Pipeline jobs can be enabled in Jenkins by installing the 
+For continuous delivery I have used [Jenkins](https://www.jenkins.io/) pipeline job. Pipeline jobs can be enabled in Jenkins by installing the 
 Pipeline plugin. They use simple text scripts known as Pipeline DSL based on Groovy programming language. The pipeline 
 that I am using at this moment contains 5 stages.
 
@@ -484,6 +484,21 @@ pipeline {
 ![alt Jenkins Pipeline snapshot](images/jenkins-pipeline.png)
 
 ### <a name="ide"></a>08. IDE ![alt PyCharm](images/pycharm-logo.png)
+
+For developing my project I have used [PyCharm](https://www.jetbrains.com/pycharm/) Community Edition. PyCharm is an 
+integrated development environment specifically for Python language. PyCharm has keyboard shortcuts for most of the
+operations related to editing, navigation, refactoring, debugging, and other tasks. 
+
+Some of my favourite keyboard shortcuts are: 
+
+1. <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>F9</kbd> = Debug
+2. <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Up/Down</kbd> = Move statement up and down
+3. <kbd>Shift</kbd> + <kbd>F6</kbd> = Rename
+4. <kbd>Ctrl</kbd> + <kbd>K</kbd> = Opens up commit sub-window
+5. <kbd>Alt</kbd> + <kbd>F7</kbd> = Find usage
+6. <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd> = Opens up settings sub-window
+7. <kbd>Shift</kbd> + <kbd>Shift</kbd> = Search for a file
+8. <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> = Search for a text in any scope
 
 
 ### <a name="dsl"></a>09. DSL
