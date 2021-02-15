@@ -353,6 +353,133 @@ environment and data. And a py_test() rule compiles a test which is a binary wra
 
 ### <a name="continuous-delivery"></a>07. Continuous Delivery
 
+For continuous delivery I have used Jenkins pipeline job. Pipeline jobs can be enabled in Jenkins by installing the 
+Pipeline plugin. They use simple text scripts known as Pipeline DSL based on Groovy programming language. The pipeline 
+that I am using at this moment contains 5 stages.
+
+1. Preparation: This stage is used to do some preparatory steps like setting up environment variables.
+2. SCM Checkout: Checkout the application-automizer project from GitHub given the branch name via build parameter.
+3. Build: In this stage I use batch command to run bazel clean and bazel build.
+4. Unit-Test: I use bazel test command to run the unit-tests of my project.
+5. Dry-Run: Execute the bazel run command with --dry-run command argument to run the application within limited scope. 
+
+[Jenkinsfile_application-automizer]
+```Groovy
+pipeline {
+    
+    agent {
+        node {
+            label 'node-automation'
+        }
+    }
+    
+    parameters {
+        gitParameter name: 'BRANCH', 
+                     type: 'PT_BRANCH_TAG',
+                     defaultValue: 'origin/main'
+    }
+    
+    environment {
+        GIT_SSH_CREDENTIALS = 'SSH.DESKTOP-TN2H62U.saurav'
+        GITHUB_BASE_URL = 'https://github.com/sksdotsauravs-beuth/'
+        PROJECT_APPLICATION_AUTOMIZER = 'application-automizer'
+        APPLICATION_AUTOMIZER_GIT_PATH = 'application-automizer.git'
+        EXTERNAL_CONFIG_FILE = 'C:\\Users\\saurav\\PycharmProjects\\application-automizer\\resource\\config.yml'
+    }
+    
+    options {
+        buildDiscarder(
+            logRotator(
+                artifactNumToKeepStr: '25',
+                numToKeepStr: '25'
+            )
+        )
+        ansiColor('xterm')
+    }
+
+    stages {
+
+        stage('Preparation') {
+            steps {
+                echo "preparing ${env.JOB_NAME} job..."
+                bat 'set'
+            }
+        }
+        
+        stage('SCM Checkout: application-automizer') {
+            steps {
+                echo "checking out ${env.PROJECT_APPLICATION_AUTOMIZER} project..."
+                checkout([
+                    $class: 'GitSCM', 
+                    branches: [[name: "${params.BRANCH}"]], 
+                    doGenerateSubmoduleConfigurations: false, 
+                    extensions: [], 
+                    gitTool: 'Default', 
+                    submoduleCfg: [], 
+                    userRemoteConfigs: [[
+                        credentialsId: env.GIT_SSH_CREDENTIALS,
+                        url: env.GITHUB_BASE_URL+env.APPLICATION_AUTOMIZER_GIT_PATH
+                    ]]
+                ])
+            }
+        }
+        
+        stage('Build: application-automizer') {
+            steps {
+                echo "building ${env.PROJECT_APPLICATION_AUTOMIZER} project..."
+                
+                script {
+                    command = 'bazel clean'
+                    output = bat (
+                        script: command,
+                        returnStdout: true
+                    ).trim()
+                    echo "[${command}] output: ${output}"
+                    
+                    command = 'bazel build app'
+                    output = bat (
+                        script: command,
+                        returnStdout: true
+                    )
+                    echo "[${command}] output: ${output}"
+                }
+            }
+        }
+        
+        stage('Unit Test: application-automizer') {
+            steps {
+                echo "executing unit-tests of ${env.PROJECT_APPLICATION_AUTOMIZER} project..."
+                
+                script {
+                    command = 'bazel test :*'
+                    output = bat (
+                        script: command,
+                        returnStdout: true
+                    )
+                    echo "[${command}] output: ${output}"
+                }
+            }
+        }
+        
+        stage('Dry-Run: application-automizer') {
+            steps {
+                echo "executing dry-run of ${env.PROJECT_APPLICATION_AUTOMIZER} project..."
+                
+                script {
+                    command = 'bazel run app -- ' + env.EXTERNAL_CONFIG_FILE + ' --dry-run'
+                    output = bat (
+                        script: command,
+                        returnStdout: true
+                    )
+                    echo "[${command}] output: ${output}"
+                }
+            }
+        }
+    }
+}
+```
+
+![alt Jenkins Pipeline snapshot](images/jenkins-pipeline.png)
 
 ### <a name="ide"></a>08. IDE
 
