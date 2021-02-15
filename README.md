@@ -20,15 +20,9 @@ A simple command line application that automates the online reservation of avail
 required libraries are listed in [requirements.txt](requirements.txt). I have used selenium chrome webdriver for 
 my project and this is only the external dependency. The latest chrome driver can be found [here](https://chromedriver.chromium.org/downloads).
 
-![alt Application Artwork](images/aa-artwork.png)
+![alt Application Artwork](images/application-automizer-artwork.png)
 
-Help can be found about how to use the tool using (after going to project root directory in shell):
-```PowerShell
-python app.py --help
-```
-![alt Application Artwork](images/output-help-command.png)
-
-As it is a command line tool it is necessary to provide the configuration through the [config.yml](resource/config.yml).
+For this command line tool to work it is necessary to provide the configuration through the [config.yml](resource/config.yml).
 ```YAML
 # set the log level to either "ERROR", "DEBUG" or "INFO"
 # to set the precision of error messages
@@ -503,6 +497,50 @@ Some of my favourite keyboard shortcuts are:
 
 ### <a name="dsl"></a>09. DSL
 
+For my application I use some special command line arguments that are specific to my application domain and performs 
+different tasks. The commands and outputs are listed below:
+
+1. Command:
+    ```PowerShell
+    python app.py --version
+    ```
+    Output:
+    ```
+    2021.2.0
+    ```
+
+2. Command:
+    ```PowerShell
+    python app.py --help
+    ```
+    Output:
+    ```
+    ********************************************************************
+                                    Help
+    ********************************************************************
+    
+    Command                                 Description
+    --------------------------------------------------------------------
+    python app.py config.yml                runs the application
+    ....................................................................
+    python app.py config.yml --dry-run      runs the application except
+                                            submitting final form
+    ....................................................................
+    python app.py --version                 prints out the current
+                                            application version
+    ....................................................................
+    ```
+3. Command:
+    ```PowerShell
+    python app.py --config.yml --dry-run
+    ```
+    Output:
+    ```
+    >>> Process 'C:\Users\saurav\PycharmProjects\application-automizer\resource\config.yml'...
+    >>> Execute preparation actions...
+    >>> Executing dry-run...
+    ...
+    ```
 
 ### <a name="functional-programming"></a>10. Functional Programming
 
