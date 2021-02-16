@@ -346,6 +346,103 @@ environment and data. And a py_test() rule compiles a test which is a binary wra
 
 ### <a name="unit-tests"></a>06. Unit-Tests
 
+I have written several unit-tests and used similar package structure as source to manage them. All this tests can be 
+found under [tests](tests) directory. Some code snippets of those tests are as below:
+
+1. [file_utils_test.py](tests/utils/file_utils_test.py)
+    ```Python
+    import os
+    import unittest
+
+    from source.utils.file_utils import FileUtils
+
+
+    class FileUtilsTest(unittest.TestCase):
+        """
+            This class performs unit tests for the public methods
+            in the @FileUtils class
+        """
+    
+        def setUp(self) -> None:
+            self.__file_path = os.path.abspath(__file__)
+    
+        def test_exists(self):
+            self.assertTrue(FileUtils.exists(self.__file_path))
+    
+        def test_exists_with_non_existing_file(self):
+            self.assertFalse(FileUtils.exists('C:\\invalid_file.xyz'))
+    
+        def test_is_dir(self):
+            self.assertTrue(FileUtils.is_dir(os.path.dirname(self.__file_path)))
+    
+        def test_is_dir_when_dir_does_not_exist(self):
+            self.assertFalse(FileUtils.is_dir(self.__file_path))
+
+
+    if __name__ == '__main__':
+        unittest.main()
+    ```
+
+2. [url_validator_test.py](tests/validator/url_validator_test.py)
+
+    ```Python
+    def test_is_valid(self):
+        validator = UrlValidator("https://www.beuth-hochschule.de/")
+        self.assertTrue(validator.is_valid())
+
+    def test_is_valid_with_invalid_url(self):
+        validator = UrlValidator("invalid_url")
+        self.assertFalse(validator.is_valid())
+    ```
+
+3. [parameter_validator_test.py](tests/validator/parameter_validator_test.py)
+
+    ```Python
+    def setUp(self) -> None:
+        self.__app_param = "app.py"
+        self.__version_param = "--version"
+        self.__help_param = "--help"
+        self.__config_file_param = os.path.abspath(
+            os.path.join("resource", "config.yml")
+        )
+        self.__dry_run_param = "--dry-run"
+    
+    def test_get_argv(self):
+        expected_argv = list()
+        expected_argv.append(self.__app_param)
+        expected_argv.append(self.__config_file_param)
+        self.assertEqual(
+            expected_argv,
+            ParameterValidator(
+                [self.__app_param, self.__config_file_param]
+            ).get_argv()
+        )
+    
+    def test_is_help_call(self):
+        argv = [self.__app_param, self.__help_param]
+        self.assertTrue(ParameterValidator(argv).is_help_call())
+    
+    def test_is_version_call(self):
+        argv = [self.__app_param, self.__version_param]
+        self.assertTrue(ParameterValidator(argv).is_version_call())
+    
+    def test_is_normal_run_call(self):
+        argv = [self.__app_param, self.__config_file_param]
+        self.assertTrue(ParameterValidator(argv).is_normal_run_call())
+    
+    def test_is_dry_run_call(self):
+        argv = [self.__app_param, self.__config_file_param, self.__dry_run_param]
+        self.assertTrue(ParameterValidator(argv).is_dry_run_call())
+    
+    def test_is_valid(self):
+        argv = [self.__app_param, self.__config_file_param]
+        self.assertTrue(ParameterValidator(argv).is_valid())
+    
+    def test_is_valid_with_invalid__argv(self):
+        argv = [self.__config_file_param]
+        self.assertFalse(ParameterValidator(argv).is_valid())
+    ```
+
 
 ### <a name="continuous-delivery"></a>07. Continuous Delivery ![alt Jenkins](images/jenkins-logo.png)
 
