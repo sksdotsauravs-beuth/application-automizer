@@ -17,9 +17,9 @@
 
 A simple command line application that automates the online reservation of available rooms/apartments in 
 [House of Nations](https://www.house-of-nations.de/) website. I have used *Python* to develop the project and the 
-required libraries are listed in [requirements.txt](requirements.txt). I have used selenium chrome webdriver for 
-my project and this is the only external dependency. The latest chrome driver can be found 
-[here](https://chromedriver.chromium.org/downloads). The application currently automates the process up to second 
+required libraries are listed in [requirements.txt](requirements.txt). This project uses selenium chrome webdriver for 
+automated browser navigation and this is the only external dependency. The latest chrome driver can be found 
+[here](https://chromedriver.chromium.org/downloads). The application currently automates navigation up to second 
 reservation page.
 
 ![alt Application Artwork](images/application-automizer-artwork.png)
@@ -283,7 +283,7 @@ through requirements.txt file.
 includes all files in its directory, plus all subdirectories beneath it, except those which themselves contain a BUILD 
 file. In this build file I mainly configure three rules: - **py_binary**, **py_test** and **test_suite**. A **py_binary** 
 is an executable python program consisting of all the source code and data needed by the program at run-time with the 
-correct initial environment and data. **py_test()** rules compiles tests which are binary wrappers around some test 
+correct initial environment and data. **py_test()** rules compile tests which are binary wrappers around some test 
 code. I have used 2 **test_suite** to group all unit-tests and integration-tests.
 
     [BUILD](BUILD)
