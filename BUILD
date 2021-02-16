@@ -55,9 +55,40 @@ py_binary(
 )
 
 py_test(
-    name = "infrastructure_test",
+    name = "library_version_test",
     srcs = [
-        "tests/infrastructure_test.py"
+        "tests/integration/library_version_test.py"
     ],
     deps = [":app"]
+)
+
+test_suite(
+    name = "integration_tests",
+    tests = [
+        "library_version_test"
+    ]
+)
+
+py_test(
+    name = "requirements_reader_test",
+    srcs = [
+        "tests/infrastructure/requirements_reader_test.py"
+    ],
+    deps = [":app"]
+)
+
+py_test(
+    name = "file_utils_test",
+    srcs = [
+        "tests/utils/file_utils_test.py"
+    ],
+    deps = [":app"]
+)
+
+test_suite(
+    name = "unit_tests",
+    tests = [
+        "requirements_reader_test",
+        "file_utils_test"
+    ]
 )
