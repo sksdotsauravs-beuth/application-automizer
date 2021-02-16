@@ -18,7 +18,9 @@
 A simple command line application that automates the online reservation of available rooms/apartments in 
 [House of Nations](https://www.house-of-nations.de/) website. I have used *Python* to develop the project and the 
 required libraries are listed in [requirements.txt](requirements.txt). I have used selenium chrome webdriver for 
-my project and this is the only external dependency. The latest chrome driver can be found [here](https://chromedriver.chromium.org/downloads).
+my project and this is the only external dependency. The latest chrome driver can be found 
+[here](https://chromedriver.chromium.org/downloads). The application currently automates the process up to second 
+reservation page.
 
 ![alt Application Artwork](images/application-automizer-artwork.png)
 
@@ -279,9 +281,10 @@ through requirements.txt file.
     ```
 2. The second file is **BUILD** file. The directory that contains this file is considered as a package. A package 
 includes all files in its directory, plus all subdirectories beneath it, except those which themselves contain a BUILD 
-file. In this build file I mainly configure two rules - **py_binary** and **py_test**. A **py_binary** is an executable 
-python program consisting of all the source code and data needed by the program at run-time with the correct initial 
-environment and data. And a py_test() rule compiles a test which is a binary wrapper around some test code.
+file. In this build file I mainly configure three rules: - **py_binary**, **py_test** and **test_suite**. A **py_binary** 
+is an executable python program consisting of all the source code and data needed by the program at run-time with the 
+correct initial environment and data. **py_test()** rules compiles tests which are binary wrappers around some test 
+code. I have used 2 **test_suite** to group all unit-tests and integration-tests.
 
     [BUILD](BUILD)
     ```Starlark
@@ -316,11 +319,50 @@ environment and data. And a py_test() rule compiles a test which is a binary wra
     )
     
     py_test(
-        name = "infrastructure_test",
-        srcs = [
-            "tests/infrastructure_test.py"
-        ],
+        name = "library_version_test",
+        srcs = ["tests/integration/library_version_test.py"],
         deps = [":app"]
+    )
+    
+    test_suite(
+        name = "integration_tests",
+        tests = [
+            "library_version_test"
+        ]
+    )
+    
+    py_test(
+        name = "requirements_reader_test",
+        srcs = ["tests/infrastructure/requirements_reader_test.py"],
+        deps = [":app"]
+    )
+    
+    py_test(
+        name = "file_utils_test",
+        srcs = ["tests/utils/file_utils_test.py"],
+        deps = [":app"]
+    )
+    
+    py_test(
+        name = "url_validator_test",
+        srcs = ["tests/validator/url_validator_test.py"],
+        deps = [":app"]
+    )
+    
+    py_test(
+        name = "parameter_validator_test",
+        srcs = ["tests/validator/parameter_validator_test.py"],
+        deps = [":app"]
+    )
+    
+    test_suite(
+        name = "unit_tests",
+        tests = [
+            "requirements_reader_test",
+            "file_utils_test",
+            "url_validator_test",
+            "parameter_validator_test"
+        ]
     )
     ```
 3. The important commands of bazel which I also use in my Jenkins pipeline are:
