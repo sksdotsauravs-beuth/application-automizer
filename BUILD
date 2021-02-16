@@ -56,9 +56,7 @@ py_binary(
 
 py_test(
     name = "library_version_test",
-    srcs = [
-        "tests/integration/library_version_test.py"
-    ],
+    srcs = ["tests/integration/library_version_test.py"],
     deps = [":app"]
 )
 
@@ -71,17 +69,25 @@ test_suite(
 
 py_test(
     name = "requirements_reader_test",
-    srcs = [
-        "tests/infrastructure/requirements_reader_test.py"
-    ],
+    srcs = ["tests/infrastructure/requirements_reader_test.py"],
     deps = [":app"]
 )
 
 py_test(
     name = "file_utils_test",
-    srcs = [
-        "tests/utils/file_utils_test.py"
-    ],
+    srcs = ["tests/utils/file_utils_test.py"],
+    deps = [":app"]
+)
+
+py_test(
+    name = "url_validator_test",
+    srcs = ["tests/validator/url_validator_test.py"],
+    deps = [":app"]
+)
+
+py_test(
+    name = "parameter_validator_test",
+    srcs = ["tests/validator/parameter_validator_test.py"],
     deps = [":app"]
 )
 
@@ -89,6 +95,8 @@ test_suite(
     name = "unit_tests",
     tests = [
         "requirements_reader_test",
-        "file_utils_test"
+        "file_utils_test",
+        "url_validator_test",
+        "parameter_validator_test"
     ]
 )
