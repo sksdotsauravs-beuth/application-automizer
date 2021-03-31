@@ -12,6 +12,7 @@ from source.output.logger import Logger
 from source.pages.house_of_nations.english_page import EnglishPage
 from source.pages.house_of_nations.home_page import HomePage
 from source.pages.house_of_nations.reservation_page1 import ReservationPage1
+from source.pages.house_of_nations.reservation_page2 import ReservationPage2
 
 
 class ApplicationSubmitter:
@@ -181,8 +182,46 @@ class ApplicationSubmitter:
         # submit by clicking next button
         reservation_page1.get_next_button().click()
 
+        reservation_page2 = ReservationPage2(self.__configuration, self.__driver)
+
+        # wait until next button is visible
+        wait = WebDriverWait(self.__driver, 5)
+        wait.until(
+            ec.visibility_of_element_located(
+                (By.XPATH, reservation_page2.get_xpath_english_lang_label())
+            )
+        )
+
+        # move cursor to english language selection label
+        action = ActionChains(self.__driver)
+        action.move_to_element(
+            reservation_page2.get_english_language_label()
+        ).perform()
+
+        # submit by clicking english language selection label
+        reservation_page2.get_english_language_label().click()
+
+        # wait until next button is visible
+        wait.until(
+            ec.visibility_of_element_located(
+                (By.XPATH, reservation_page2.get_xpath_next_button())
+            )
+        )
+
+        if reservation_page2.at():
+            self.__logger.print_log_message(
+                LogLevel.INFO,
+                '>>> Currently at reservation step-2...'
+            )
+        else:
+            raise RuntimeError(">>> Not at reservation page-2...")
+
+        reservation_page2.find_room_selection_radio_by_criteria()
+
         # wait for 5 seconds
         time.sleep(5)
+
+        return reservation_page2
 
     def shutdown(self):
         """
