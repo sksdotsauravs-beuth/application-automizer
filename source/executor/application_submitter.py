@@ -216,7 +216,17 @@ class ApplicationSubmitter:
         else:
             raise RuntimeError(">>> Not at reservation page-2...")
 
-        reservation_page2.find_room_selection_radio_by_criteria()
+        available_rooms = reservation_page2.find_all_available_rooms()
+        self.__logger.print_log_message(
+            LogLevel.INFO,
+            f'>>> Found {len(available_rooms)} available rooms...'
+        )
+
+        for count, room in enumerate(available_rooms):
+            self.__logger.print_log_message(
+                LogLevel.INFO,
+                f'>>> [{count+1}] {room.get_details()}'
+            )
 
         # wait for 5 seconds
         time.sleep(5)
