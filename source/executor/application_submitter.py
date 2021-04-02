@@ -182,7 +182,7 @@ class ApplicationSubmitter:
         # submit by clicking next button
         reservation_page1.get_next_button().click()
 
-        reservation_page2 = ReservationPage2(self.__configuration, self.__driver)
+        reservation_page2 = ReservationPage2(self.__driver)
 
         # wait until next button is visible
         wait = WebDriverWait(self.__driver, 5)

@@ -4,7 +4,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote import webelement
 
-from source.model.configuration import Configuration
 from source.model.room_info import RoomInfo
 from source.pages.page import Page
 
@@ -19,13 +18,12 @@ class ReservationPage2(Page):
         it's url and other page elements.
     """
 
-    def __init__(self, configuration: Configuration, driver: webdriver):
+    def __init__(self, driver: webdriver):
         """
             This constructor will set all needed attributes.
         """
 
         super().__init__()
-        self.__configuration = configuration
         self.__driver = driver
         self.__set_attributes()
 
