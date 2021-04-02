@@ -1,5 +1,6 @@
 import re
-
+from datetime import date
+from datetime import datetime
 
 class RoomInfo:
     """
@@ -120,6 +121,33 @@ class RoomInfo:
         return float(
             re.findall(r'\d+\.\d+', self.__price_euro)[0]
         )
+
+    def get_free_from_date(self) -> date:
+        """
+            This will return free from date
+        """
+
+        return datetime.strptime(self.__free_at, "%d.%m.%Y").date()
+
+    def get_size(self) -> float:
+        """
+            This will return room size in float
+        """
+
+        return float(
+            re.findall(r'\d+\.\d+', self.__size_square_meter)[0]
+        )
+
+    def get_floor_number(self) -> int:
+        """
+            This will return floor number in int
+        """
+        if self.__floor == "EG":
+            return 0
+        else:
+            return int(
+                re.findall(r'\d+', self.__floor)[0]
+            )
 
     house_name = property(get_house_name)
     room_type = property(get_room_type)
