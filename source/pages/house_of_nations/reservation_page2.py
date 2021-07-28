@@ -26,6 +26,7 @@ class ReservationPage2(Page):
         super().__init__()
         self.__driver = driver
         self.__set_attributes()
+        self.__value_target_room_radio = None
 
     # public
 
@@ -75,6 +76,29 @@ class ReservationPage2(Page):
 
         return self.__xpath_english_lang_label
 
+    def get_value_target_room_radio(self) -> str:
+        """
+            This method returns the target room radio value
+        """
+
+        return self.__value_target_room_radio
+
+    def set_value_target_room_radio(self, value_target_room_radio: str):
+        """
+            This method will set the target room radio value
+        """
+
+        self.__value_target_room_radio = value_target_room_radio
+
+    def get_target_room_radio(self) -> webelement:
+        """
+            This method returns the target room radio element
+        """
+
+        return self.__driver.find_element_by_xpath(
+            f"//input[@value='{self.get_value_target_room_radio()}']"
+        )
+
     def find_all_available_rooms(self) -> webelement:
         """
             This method returns the room selection radio element
@@ -84,16 +108,16 @@ class ReservationPage2(Page):
         room_listing_section = self.__get_room_listing_section()
         location_div_list = room_listing_section.find_elements(
             By.XPATH,
-            ".//div[@class='room_listing_bg']"
+            ".//div[contains(@class, 'room_listing_bg')]"
         )
         for location_div in location_div_list:
             house_name = location_div.find_element(
                 By.XPATH,
-                ".//div[1]/div[1]/h2[@class='room_data_headline']"
+                ".//div[1]/h2[@class='room_data_headline']"
             ).text
             room_list_table = location_div.find_element(
                 By.XPATH,
-                ".//div[3]/table[@class='room_data_table']"
+                ".//table[contains(@class, 'room_data_table')]"
             )
             room_tr_list = room_list_table.find_elements(By.TAG_NAME, "tr")
             room_tr_list = room_tr_list[1:]
@@ -107,7 +131,7 @@ class ReservationPage2(Page):
                 floor = room_tr.find_element(By.XPATH, ".//td[6]").text
                 selection_radios = room_tr.find_elements(By.XPATH, ".//td[7]/input[@type='radio']")
                 if len(selection_radios) > 0:
-                    radio_id = selection_radios[0].get_attribute("value")
+                    radio_value = selection_radios[0].get_attribute("value")
                     available_rooms.append(
                         RoomInfo(
                             house_name,
@@ -117,7 +141,7 @@ class ReservationPage2(Page):
                             price_euro,
                             size_square_meter,
                             floor,
-                            radio_id
+                            radio_value
                         )
                     )
 
@@ -126,14 +150,15 @@ class ReservationPage2(Page):
     url = property(get_url)
     xpath_next_button = property(get_xpath_next_button)
     xpath_english_lang_label = property(get_xpath_english_lang_label)
+    value_target_room_radio = property(get_value_target_room_radio, set_value_target_room_radio)
 
     # private
 
     def __set_attributes(self):
         self.__page_url = "https://reservation.house-of-nations.de/hon/whm_showunit.php"
-        self.__xpath_step_2_div = "/html/body/header/div[2]/div[2]"
-        self.__xpath_next_button = "/html/body/form/section[2]/input[2]"
-        self.__xpath_english_lang_label = "/html/body/header/div[1]/form/label[2]"
+        self.__xpath_step_2_div = "/html/body/header/div/div[3]/div[2]"
+        self.__xpath_next_button = "/html/body/form/section[2]/div/div[2]/input[2]"
+        self.__xpath_english_lang_label = "/html/body/header/div/div[1]/form/label[2]"
         self.__xpath_room_listing_section = "//*[@id='content']"
 
     def __get_step_2_div(self) -> webelement:

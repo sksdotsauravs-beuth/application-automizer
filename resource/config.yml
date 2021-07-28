@@ -25,7 +25,7 @@ step1.start_month_tag: "Middle of"
 #   "January", "February", "March", "April", "May", "June",
 #   "July", "August", "September", "October", "November", "December"
 # ]
-step1.start_month: "March"
+step1.start_month: "October"
 
 # set this property to start year
 step1.start_year: "2021"
@@ -36,7 +36,7 @@ step1.end_month_tag: "Middle of"
 
 # set this property to end month
 # valid options similar as step1.start_month
-step1.end_month: "January"
+step1.end_month: "September"
 
 # set this property to end year
 step1.end_year: "2022"

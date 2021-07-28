@@ -50,7 +50,7 @@ class AppExecutor:
             str(self.__parameter_validator.get_argv()[1])
         )
         submitter.initialize()
-        self.__logger = submitter.logger
+        self.__logger = submitter.get_logger()
         return submitter
 
     # noinspection PyBroadException
@@ -70,8 +70,10 @@ class AppExecutor:
                 .move_to_english_page_from_home(home_page)
             reservation_page1 = application \
                 .move_to_reservation_step1_from_english(english_page)
-            application \
-                .fill_step1_information_and_move_to_step_2(reservation_page1)
+            reservation_page2 = application \
+                .fill_step1_information_and_move_to_step2(reservation_page1)
+            application. \
+                fill_step2_information_and_move_to_step3(reservation_page2)
 
             self.__handle_post_steps()
         except Exception:

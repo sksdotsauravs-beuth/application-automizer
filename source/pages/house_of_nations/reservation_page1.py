@@ -109,19 +109,19 @@ class ReservationPage1(Page):
 
     def __set_attributes(self):
         self.__page_url = "https://reservation.house-of-nations.de/hon/index.php?lng=2"
-        self.__xpath_step_1_div = "/html/body/header/div[2]/div[1]"
-        self.__xpath_next_button = "/html/body/form/section[2]/input"
+        self.__xpath_step_1_div = "/html/body/header/div/div[3]/div[1]"
+        self.__xpath_next_button = "/html/body/form/section[2]/div/div/input"
         self.__xpath_start_month_tag = "//*[@id='start_tag']"
         self.__id_start_month = "start_monat"
         self.__name_start_year = "start_jahr"
         self.__xpath_end_month_tag = "//*[@id='end_tag']"
         self.__xpath_end_month = "//*[@id='end_monat']"
         self.__xpath_end_year = "//*[@id='end_jahr']"
-        self.__xpath_room_choice_typ0 = "//*[@id='typ0']"
-        self.__xpath_room_choice_typ1 = "//*[@id='typ1']"
-        self.__xpath_room_choice_typ2 = "//*[@id='typ2']"
-        self.__xpath_room_choice_typ3 = "//*[@id='typ3']"
-        self.__xpath_room_choice_typ4 = "//*[@id='typ4']"
+        self.__xpath_room_choice_typ0 = "//*[@id='typEZ']"
+        self.__xpath_room_choice_typ1 = "//*[@id='typEA']"
+        self.__xpath_room_choice_typ2 = "//*[@id='typEA2P']"
+        self.__xpath_room_choice_typ3 = "//*[@id='typDA']"
+        self.__xpath_room_choice_typ4 = "//*[@id='typDAB']"
 
     def __get_step_1_div(self) -> webelement:
         return self.__driver.find_element_by_xpath(

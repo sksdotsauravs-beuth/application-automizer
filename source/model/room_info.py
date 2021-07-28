@@ -2,6 +2,7 @@ import re
 from datetime import date
 from datetime import datetime
 
+
 class RoomInfo:
     """
         - author:             Saurav Kumar Saha
@@ -16,7 +17,7 @@ class RoomInfo:
             - price_euro: monthly price in euro
             - size_square_meter: size in square meter
             - floor: floor of the room
-            - radio_id: unique radio id of the room
+            - radio_value: unique radio value of the room
     """
 
     # public
@@ -29,7 +30,7 @@ class RoomInfo:
                  price_euro: str,
                  size_square_meter: str,
                  floor: str,
-                 radio_id: str):
+                 radio_value: str):
         """
             This constructor will set the class instance attributes.
         """
@@ -41,7 +42,7 @@ class RoomInfo:
         self.__price_euro = price_euro
         self.__size_square_meter = size_square_meter
         self.__floor = floor
-        self.__radio_id = radio_id
+        self.__radio_value = radio_value
 
     def get_house_name(self) -> str:
         """
@@ -92,12 +93,12 @@ class RoomInfo:
 
         return self.__floor
 
-    def get_radio_id(self) -> str:
+    def get_radio_value(self) -> str:
         """
-            This method will return radio_id
+            This method will return radio_value
         """
 
-        return self.__radio_id
+        return self.__radio_value
 
     def get_details(self) -> str:
         """
@@ -111,7 +112,7 @@ class RoomInfo:
                f'{self.__price_euro}|' \
                f'{self.__size_square_meter}|' \
                f'{self.__floor}|' \
-               f'{self.__radio_id}'
+               f'{self.__radio_value}'
 
     def get_price(self) -> float:
         """
@@ -156,4 +157,4 @@ class RoomInfo:
     price_euro = property(get_price_euro)
     size_square_meter = property(get_size_square_meter)
     floor = property(get_floor)
-    radio_id = property(get_radio_id)
+    radio_value = property(get_radio_value)

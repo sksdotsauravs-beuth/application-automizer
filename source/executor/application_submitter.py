@@ -69,6 +69,10 @@ class ApplicationSubmitter:
         else:
             raise RuntimeError(">>> Not at home page...")
 
+        deny_cookies_button = homepage.get_deny_all_cookies_except_essential_button()
+        if deny_cookies_button:
+            deny_cookies_button.click()
+
         return homepage
 
     def move_to_english_page_from_home(self, homepage: HomePage):
@@ -158,7 +162,7 @@ class ApplicationSubmitter:
 
         return reservation_page1
 
-    def fill_step1_information_and_move_to_step_2(self, reservation_page1: ReservationPage1):
+    def fill_step1_information_and_move_to_step2(self, reservation_page1: ReservationPage1):
         self.__logger.print_log_message(
             LogLevel.INFO,
             '>>> Fill up step-1 information...'
@@ -227,6 +231,46 @@ class ApplicationSubmitter:
                 LogLevel.INFO,
                 f'>>> [{count+1}] {room.get_details()}'
             )
+
+        if len(available_rooms) > 0:
+            with_lowest_price = sorted(available_rooms, key=lambda x: x.price_euro)[0]
+            self.__logger.print_log_message(
+                LogLevel.INFO,
+                f'>>> Room with lowest price: {with_lowest_price.get_details()}'
+            )
+            reservation_page2.set_value_target_room_radio(with_lowest_price.get_radio_value())
+
+        return reservation_page2
+
+    def fill_step2_information_and_move_to_step3(self, reservation_page2: ReservationPage2):
+        if not reservation_page2.get_value_target_room_radio():
+            self.__logger.print_log_message(
+                LogLevel.INFO,
+                '>>> No target room found, skipping step-2...'
+            )
+            return
+
+        self.__logger.print_log_message(
+            LogLevel.INFO,
+            '>>> Fill up step-2 information...'
+        )
+
+        target_room_radio = reservation_page2.get_target_room_radio()
+
+        # move cursor to target room radio
+        action = ActionChains(self.__driver)
+        action.move_to_element(target_room_radio).perform()
+
+        target_room_radio.click()
+
+        # move cursor to next button
+        action = ActionChains(self.__driver)
+        action.move_to_element(
+            reservation_page2.get_next_button()
+        ).perform()
+
+        # submit by clicking next button
+        reservation_page2.get_next_button().click()
 
         # wait for 5 seconds
         time.sleep(5)

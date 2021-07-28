@@ -41,6 +41,15 @@ class HomePage(Page):
 
         return self.__driver.title == self.__page_title
 
+    def get_deny_all_cookies_except_essential_button(self) -> webelement:
+        """
+            This method returns the deny all but essential cookies button
+        """
+
+        return self.__driver.find_element_by_xpath(
+            self.__xpath_deny_all_cookies_except_essential_button
+        )
+
     def get_language_menu(self) -> webelement:
         """
             This method returns the language menu list item element
@@ -87,6 +96,9 @@ class HomePage(Page):
         self.__page_title = "Studentenapartments Berlin, günstige Zimmer Studenten Azubis Berlin, Zimmer mieten"
         self.__xpath_nav_menu = "/html/body/div[1]/div/header/div/div/div/div/div/nav[1]"
         self.__xpath_english_sub_menu = "//*[@id='nav-menu-item-wpml-ls-63-en']/a"
+        self.__xpath_deny_all_cookies_except_essential_button = "\
+        //*[@id='BorlabsCookieBox']/div/div/div/div[1]/div/div/div[2]/p[3]/a\
+        "
 
     def __get_nav_menu(self) -> webelement:
         return self.__driver.find_element_by_xpath(
