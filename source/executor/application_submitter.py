@@ -19,7 +19,7 @@ class ApplicationSubmitter:
     """
         - author:             Saurav Kumar Saha
         - created:            2021-02-05
-        - changed:            2021-02-13
+        - changed:            2021-07-28
 
         This class holds the actual program functionality.
     """
@@ -238,7 +238,7 @@ class ApplicationSubmitter:
                 LogLevel.INFO,
                 f'>>> Room with lowest price: {with_lowest_price.get_details()}'
             )
-            reservation_page2.set_value_target_room_radio(with_lowest_price.get_radio_value())
+            reservation_page2.value_target_room_radio = with_lowest_price.get_radio_value()
 
         return reservation_page2
 

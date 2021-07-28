@@ -9,7 +9,7 @@ class AppExecutor:
     """
         - author:             Saurav Kumar Saha
         - created:            2021-02-04
-        - changed:            2020-02-07
+        - changed:            2021-07-28
 
         This class will execute the ApplicationSubmitter class by providing specific output.
         In addition to that it will execute pre and post actions.

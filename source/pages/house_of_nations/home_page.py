@@ -9,7 +9,7 @@ class HomePage(Page):
     """
         - author:             Saurav Kumar Saha
         - created:            2021-02-04
-        - changed:            2021-02-07
+        - changed:            2021-07-28
 
         This class holds the information of home page, such as:
         it's url and other page elements.

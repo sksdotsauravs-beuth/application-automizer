@@ -12,7 +12,7 @@ class ReservationPage2(Page):
     """
         - author:             Saurav Kumar Saha
         - created:            2021-03-16
-        - changed:            2021-03-31
+        - changed:            2021-07-28
 
         This class holds the information of reservation page 2, such as:
         it's url and other page elements.

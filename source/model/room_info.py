@@ -7,7 +7,7 @@ class RoomInfo:
     """
         - author:             Saurav Kumar Saha
         - created:            2021-04-01
-        - changed:            2021-04-01
+        - changed:            2021-07-28
 
         This class holds the information of room entry:
             - house_name: house name of the room
